@@ -1,4 +1,4 @@
-FoCAS-SASO14
+ICSOC-WESOA14
 ============
 
-Paper for FoCAS workshop at SASO14
+Paper for ICSOC workshop at WESOA14
