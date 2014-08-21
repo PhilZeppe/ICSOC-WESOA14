@@ -1,0 +1,911 @@
+%\begin{prescribed inclusions and legal notice}//just for code folding in editor  
+  %%*************************************************************************
+  %% Legal Notice:
+  %% This code is offered as-is without any warranty either expressed or
+  %% implied; without even the implied warranty of MERCHANTABILITY or
+  %% FITNESS FOR A PARTICULAR PURPOSE! 
+  %% User assumes all risk.
+  %% In no event shall IEEE or any contributor to this code be liable for
+  %% any damages or losses, including, but not limited to, incidental,
+  %% consequential, or any other damages, resulting from the use or misuse
+  %% of any information contained here.
+  %%
+  %% All comments are the opinions of their respective authors and are not
+  %% necessarily endorsed by the IEEE.
+  %%
+  %% This work is distributed under the LaTeX Project Public License (LPPL)
+  %% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+  %% distributed and modified. A copy of the LPPL, version 1.3, is included
+  %% in the base LaTeX documentation of all distributions of LaTeX released
+  %% 2003/12/01 or later.
+  %% Retain all contribution notices and credits.
+  %% ** Modified files should be clearly indicated as such, including  **
+  %% ** renaming them and changing author support contact information. **
+  %%
+  %% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+  %%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex
+  %%*************************************************************************
+
+
+
+  \documentclass[conference]{IEEEtran}
+  \IEEEoverridecommandlockouts
+  % Add the compsoc option for Computer Society conferences.
+  %
+  % If IEEEtran.cls has not been installed into the LaTeX system files,
+  % manually specify the path to it like:
+  % \documentclass[conference]{../sty/IEEEtran}
+
+  % *** MISC UTILITY PACKAGES ***
+  %
+  %\usepackage{ifpdf}
+  % Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+  % compilation based on whether the output is pdf or dvi.
+  % usage:
+  % \ifpdf
+  %   % pdf code
+  % \else
+  %   % dvi code
+  % \fi
+
+
+
+  % *** CITATION PACKAGES ***
+  %
+  %\usepackage{cite}
+  % cite.sty was written by Donald Arseneau
+  % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+  % \cite{} output to follow that of IEEE. Loading the cite package will
+  % result in citation numbers being automatically sorted and properly
+  % "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+  % cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+  % \cite will automatically add leading space, if needed. Use cite.sty's
+  % noadjust option (cite.sty V3.8 and later) if you want to turn this off.
+  % cite.sty is already installed on most LaTeX systems. Be sure and use
+  % version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
+  % not currently provide for hyperlinked citations.
+  % The latest version can be obtained at:
+  % http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+  % The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+  % *** GRAPHICS RELATED PACKAGES ***
+  %
+  \ifCLASSINFOpdf
+     \usepackage[pdftex]{graphicx}
+    % declare the path(s) where your graphic files are
+    % \graphicspath{{../pdf/}{../jpeg/}}
+    % and their extensions so you won't have to specify these with
+    % every instance of \includegraphics
+    % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+  \else
+    % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+    % will default to the driver specified in the system graphics.cfg if no
+    % driver is specified.
+    % \usepackage[dvips]{graphicx}
+    % declare the path(s) where your graphic files are
+    % \graphicspath{{../eps/}}
+    % and their extensions so you won't have to specify these with
+    % every instance of \includegraphics
+    % \DeclareGraphicsExtensions{.eps}
+  \fi
+  % graphicx was written by David Carlisle and Sebastian Rahtz. It is
+  % required if you want graphics, photos, etc. graphicx.sty is already
+  % installed on most LaTeX systems. The latest version and documentation can
+  % be obtained at: 
+  % http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+  % Another good source of documentation is "Using Imported Graphics in
+  % LaTeX2e" by Keith Reckdahl which can be found as epslatex.ps or
+  % epslatex.pdf at: http://www.ctan.org/tex-archive/info/
+  %
+  % latex, and pdflatex in dvi mode, support graphics in encapsulated
+  % postscript (.eps) format. pdflatex in pdf mode supports graphics
+  % in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+  % that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+  % not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+  % which can result in "jaggedy"/blurry rendering of lines and letters as
+  % well as large increases in file sizes.
+  %
+  % You can find documentation about the pdfTeX application at:
+  % http://www.tug.org/applications/pdftex
+
+
+
+
+
+  % *** MATH PACKAGES ***
+  %
+  \usepackage[cmex10]{amsmath}
+  % A popular package from the American Mathematical Society that provides
+  % many useful and powerful commands for dealing with mathematics. If using
+  % it, be sure to load this package with the cmex10 option to ensure that
+  % only type 1 fonts will utilized at all point sizes. Without this option,
+  % it is possible that some math symbols, particularly those within
+  % footnotes, will be rendered in bitmap form which will result in a
+  % document that can not be IEEE Xplore compliant!
+  %
+  % Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+  % thus preventing page breaks from occurring within multiline equations. Use:
+  %\interdisplaylinepenalty=2500
+  % after loading amsmath to restore such page breaks as IEEEtran.cls normally
+  % does. amsmath.sty is already installed on most LaTeX systems. The latest
+  % version and documentation can be obtained at:
+  % http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+  % *** SPECIALIZED LIST PACKAGES ***
+  %
+  \usepackage{algorithmic}
+  % algorithmic.sty was written by Peter Williams and Rogerio Brito.
+  % This package provides an algorithmic environment fo describing algorithms.
+  % You can use the algorithmic environment in-text or within a figure
+  % environment to provide for a floating algorithm. Do NOT use the algorithm
+  % floating environment provided by algorithm.sty (by the same authors) or
+  % algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+  % algorithm float types and packages that provide these will not provide
+  % correct IEEE style captions. The latest version and documentation of
+  % algorithmic.sty can be obtained at:
+  % http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+  % There is also a support site at:
+  % http://algorithms.berlios.de/index.html
+  % Also of interest may be the (relatively newer and more customizable)
+  % algorithmicx.sty package by Szasz Janos:
+  % http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+  % *** ALIGNMENT PACKAGES ***
+  %
+  \usepackage{array}
+  % Frank Mittelbach's and David Carlisle's array.sty patches and improves
+  % the standard LaTeX2e array and tabular environments to provide better
+  % appearance and additional user controls. As the default LaTeX2e table
+  % generation code is lacking to the point of almost being broken with
+  % respect to the quality of the end results, all users are strongly
+  % advised to use an enhanced (at the very least that provided by array.sty)
+  % set of table tools. array.sty is already installed on most systems. The
+  % latest version and documentation can be obtained at:
+  % http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+  \usepackage{mdwmath}
+  \usepackage{mdwtab}
+  % Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+  % especially mdwmath.sty and mdwtab.sty which are used to format equations
+  % and tables, respectively. The MDWtools set is already installed on most
+  % LaTeX systems. The lastest version and documentation is available at:
+  % http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
+
+
+  % IEEEtran contains the IEEEeqnarray family of commands that can be used to
+  % generate multiline equations as well as matrices, tables, etc., of high
+  % quality.
+
+
+  \usepackage{eqparbox}
+  % Also of notable interest is Scott Pakin's eqparbox package for creating
+  % (automatically sized) equal width boxes - aka "natural width parboxes".
+  % Available at:
+  % http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
+
+
+
+
+
+  % *** SUBFIGURE PACKAGES ***
+  %\usepackage[tight,footnotesize]{subfigure}
+  % subfigure.sty was written by Steven Douglas Cochran. This package makes it
+  % easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
+  % work, it is a good idea to load it with the tight package option to reduce
+  % the amount of white space around the subfigures. subfigure.sty is already
+  % installed on most LaTeX systems. The latest version and documentation can
+  % be obtained at:
+  % http://www.ctan.org/tex-archive/obsolete/macros/latex/contrib/subfigure/
+  % subfigure.sty has been superceeded by subfig.sty.
+
+
+
+  %\usepackage[caption=false]{caption}
+  %\usepackage[font=footnotesize]{subfig}
+  % subfig.sty, also written by Steven Douglas Cochran, is the modern
+  % replacement for subfigure.sty. However, subfig.sty requires and
+  % automatically loads Axel Sommerfeldt's caption.sty which will override
+  % IEEEtran.cls handling of captions and this will result in nonIEEE style
+  % figure/table captions. To prevent this problem, be sure and preload
+  % caption.sty with its "caption=false" package option. This is will preserve
+  % IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later 
+  % (recommended due to many improvements over 1.2) of subfig.sty supports
+  % the caption=false option directly:
+  \usepackage[caption=false,font=footnotesize]{subfig}
+  %
+  % The latest version and documentation can be obtained at:
+  % http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+  % The latest version and documentation of caption.sty can be obtained at:
+  % http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
+
+
+
+
+  % *** FLOAT PACKAGES ***
+  %
+  \usepackage{fixltx2e}
+  % fixltx2e, the successor to the earlier fix2col.sty, was written by
+  % Frank Mittelbach and David Carlisle. This package corrects a few problems
+  % in the LaTeX2e kernel, the most notable of which is that in current
+  % LaTeX2e releases, the ordering of single and double column floats is not
+  % guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+  % single column figure to be placed prior to an earlier double column
+  % figure. The latest version and documentation can be found at:
+  % http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+
+  \usepackage{stfloats}
+  % stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+  % the ability to do double column floats at the bottom of the page as well
+  % as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+  % LaTeX2e). It also provides a command:
+  %\fnbelowfloat
+  % to enable the placement of footnotes below bottom floats (the standard
+  % LaTeX2e kernel puts them above bottom floats). This is an invasive package
+  % which rewrites many portions of the LaTeX2e float routines. It may not work
+  % with other packages that modify the LaTeX2e float routines. The latest
+  % version and documentation can be obtained at:
+  % http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+  % Documentation is contained in the stfloats.sty comments as well as in the
+  % presfull.pdf file. Do not use the stfloats baselinefloat ability as IEEE
+  % does not allow \baselineskip to stretch. Authors submitting work to the
+  % IEEE should note that IEEE rarely uses double column equations and
+  % that authors should try to avoid such use. Do not be tempted to use the
+  % cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
+  % not format its papers in such ways.
+
+
+
+
+
+  % *** PDF, URL AND HYPERLINK PACKAGES ***
+  %
+  \usepackage{url}
+  % url.sty was written by Donald Arseneau. It provides better support for
+  % handling and breaking URLs. url.sty is already installed on most LaTeX
+  % systems. The latest version can be obtained at:
+  % http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
+  % Read the url.sty source comments for usage information. Basically,
+  % \url{my_url_here}.
+
+
+
+
+
+  % *** Do not adjust lengths that control margins, column widths, etc. ***
+  % *** Do not use packages that alter fonts (such as pslatex).         ***
+  % There should be no need to do such things with IEEEtran.cls V1.6 and later.
+  % (Unless specifically asked to do so by the journal or conference you plan
+  % to submit to, of course. )
+%\end{}
+
+% Packages included by us:
+
+\usepackage{soul} %color and soul are for highlihting while working on the paper
+\usepackage{color}
+\usepackage{paralist} %for inpapaenum
+\usepackage{float}    %for fixing floats
+\usepackage{placeins} %for fixing floats
+\usepackage{gensymb}  %for degree symbol
+
+% correct bad hyphenation here
+\hyphenation{crowd-sour-cing middle-ware}
+
+%\newcommand{\sms}{\textsc{SmartSoc}}
+\newcommand{\mdl}{\textsc{SmartCom}}
+
+%Make figures easier
+\newcommand{\figcol}[3][0.9]{
+\begin{figure}[H] %place exactly here, from 'float' package
+\centering
+\includegraphics[width=#1\columnwidth]{figures/#2}
+\caption{#3}
+\label{fig:#2}
+\end{figure}
+}
+
+\newcommand{\figcoltop}[3][0.9]{
+\begin{figure}[t] %place exactly here, from 'float' package
+\centering
+\includegraphics[width=#1\columnwidth]{figures/#2}
+\caption{#3}
+\label{fig:#2}
+\end{figure}
+}
+
+\newcommand{\figfull}[3][0.9]{
+\begin{figure*}[t]
+\centering
+\includegraphics[width=#1\textwidth]{figures/#2}
+\caption{#3}
+\label{fig:#2}
+\end{figure*}
+}
+
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{Virtualizing Communication for Hybrid and Diversity-Aware Collective Adaptive Systems}
+\author{
+  \IEEEauthorblockN
+  {
+    Philipp Zeppezauer,
+    Ognjen Scekic, 
+    Hong-Linh Truong and
+    Schahram Dustdar
+  }
+  \IEEEauthorblockA
+  {
+    Distributed Systems Group, Vienna University of Technology, Austria\\
+    %http://dsg.tuwien.ac.at \\
+    \{zeppezauer,oscekic,truong,dustdar\}@dsg.tuwien.ac.at
+  }
+}
+
+
+
+% \author{\IEEEauthorblockN{
+% Philipp Zeppezauer\IEEEauthorrefmark{1},
+% Ognjen Scekic\IEEEauthorrefmark{2}, 
+% Hong-Linh Truong\IEEEauthorrefmark{2} and
+% Schahram Dustdar\IEEEauthorrefmark{2}}
+% \IEEEauthorblockA{Distributed Systems Group,
+% Vienna University of Technology, Austria\\
+% %http://dsg.tuwien.ac.at \\
+%  \IEEEauthorrefmark{1}philip.zeppezauer@tuwien.ac.at\\
+% \IEEEauthorrefmark{2}\{oscekic,truong,dustdar\}@dsg.tuwien.ac.at}}
+
+% make the title area
+\maketitle
+
+
+\begin{abstract}
+%\boldmath
+
+Hybrid and Diversity-Aware Collective Adaptive Systems (HDA-CAS) form a 
+broad class of highly distributed systems comprising a number of
+heterogeneous human-based and machine-based computing (service) units.
+%agents (humans and machines). 
+These units %are required
+%to 
+collaborate in ad-hoc formed, dynamically-adaptive collectives.  Whenever possible, the collectives are allowed to self-orchestrate. The flexibility of these collectives makes them suitable for processing elaborate tasks, but at the same time, building a system to manage such collectives is challenging. In this paper, we address the fundamental communication challenges for HDA-CAS. 
+%represents a challenge. 
+%In this paper, 
+We present the design of a middleware for virtualizing communication  within and among collectives.
+%virtualization in a communication and
+%virtualization middleware for one such system, the SmartSociety platform.
+The middleware is able to handle numerous, intermittently-available, human and software-based service units, and manage the notion of collectivity transparently to the programmer. A prototype implementation for validation purposed is also provided.
+\end{abstract}
+% IEEEtran.cls defaults to using nonbold math in the Abstract.
+% This preserves the distinction between vectors and scalars. However,
+% if the conference you are submitting to favors bold math in the abstract,
+% then you can use LaTeX's standard command \boldmath at the very start
+% of the abstract to achieve this. Many IEEE journals/conferences frown on
+% math in the abstract anyway.
+
+% no keywords
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+\label{sec:intro}
+
+  \textbf{Collective Adaptive System} (\textbf{CAS}) \cite{FoCASBook} is an umbrella-term denoting distributed systems comprised of multiple autonomous computing elements with different individual properties, but with the fundamental property of collectiveness. \emph{Collectiveness} implies that the individual elements need to communicate and collaborate in order to reach common decisions, or perform tasks jointly. \emph{Adaptiveness} is another basic property of CASs, implying open systems where computing elements may join and leave, and dynamically alter collective compositions or task execution goals. 
+  %
+  CASs come in a variety of forms. \textbf{Hybrid and Diversity-Aware CAS} (\textbf{HDA-CAS}s) \cite{fausto} additionally add the \emph{heterogeneity} to the founding principles. This means that they inherently support communication and collaboration among different types of computing elements, such as software, people and sensors. 
+  %
+  In this paper, we focus on one particular HDA-CAS representative---the \textbf{SmartSociety Platform} \cite{SmartSocBook}; and present the design of the platform's \emph{virtualization and communication middleware}---\textbf{\mdl{}}, providing the communication primitives to supporting the platform's heterogeneity, collectivity and adaptiveness requirements. However, the middleware's design is generally applicable to a wide number of HDA-CAS platforms.
+
+  
+  In the following section we present the context and usage scenario of the SmartSociety platform and formulate the design requirements for the \mdl{} middleware. In Section~\ref{sec:middleware} we present \mdl's architecture and functionalities aiming to fulfill the presented requirements. In Section~\ref{sec:impl} we validate the presented design by describing a prototype implementation and showcase its functioning on a realistic use-case. Section~\ref{sec:relwork} presents the related work. Section~\ref{sec:conclusion} concludes the paper.
+
+  \figcol[1.0]{smartsoc-highlevel}{Operational context for the \mdl{} middleware. Middleware components are marked in blue.}
+
+  \section{Motivation \& Requirements}
+
+    \subsection{Operational Context}
+    \label{sec:intro:context}
+
+      Figure~\ref{fig:smartsoc-highlevel} shows the high-level architecture of the SmartSociety platform and presents the \mdl's operational context. SmartSociety platform supports `programming' and execution of hybrid human-computer `computations'. These computations consist of different general-purpose tasks being submitted to the platform for execution. More precisely, the platform \emph{users} submit complex tasks to a \emph{SmartSociety application} running on the platform. The application performs the task by assembling and engaging \textbf{collectives} of \textbf{service units} to execute the (sub-)tasks collaboratively.
+
+      The service unit (SU) is an entity provisioned and utilized through service models (e.g., on-demand and pay-per-use usage) \cite{truongijcis}. An SU consists of:
+        \begin{inparaenum}[\itshape i)]
+          %
+          \item \textbf{Peer} --- a human, a machine, or a thing (e.g., a sensor) performing the computation or executing a task;
+          %
+          \item \textbf{Context} --- a set of parameters describing the execution context of the particular HDA-CAS application in which the SU is participating. 
+        \end{inparaenum}
+      %
+      The context parameters can include: execution ID, QoS requirements, performance metrics, associated incentives. Additionally, the context includes a \emph{Communication Adapter}, a component belonging to the \mdl{} middleware, providing a context/application-dependent communication and virtualization channel for communicating with the SU, i.e., the peer within it (Figure~\ref{fig:smartsoc-highlevel}).
+      %
+      The SU can use different communication channels to interact with \mdl{}, e.g., a human-based SU can communicate with the platform via email and Twitter interchangeably, receive task descriptions and track progress through a web application, and communicate with other SUs within the collective through a dedicated mobile app. Human-based SUs can make use of software-based SUs in the collective, serving as collaborative and utility tools. For example, a software service like Doodle can be used to agree upon participation times, Dropbox as a common repository for performed tasks, or Splunk for data analytics.
+
+      Both humans and machines can drive the task processing---e.g., a software may invoke workflow activities which are performed by  human-based service units; or, conversely, human-based service units can orchestrate the execution independently, using software services as data analytics, collaboration and coordination tools.
+      %
+      How exactly a task is processed is effectively controlled by the SmartSociety application.  As an important design principle of the SmartSociety platform is to achieve `smartness' by leveraging human intelligence and capabilities whenever possible, the applications try to minimize the use of conventional workflows to describe the task processing, and rely primarily on the use of \emph{collaboration patterns}. 
+      %
+      A collaboration pattern governs the effort within a collective in a loose manner; rather than over-regulating humans, the collaboration patterns set the limits within which the service units are allowed to self-organize, using familiar collaboration tools and environments. 
+      %At the same time, the the collaboration patterns help the peers to initialize and better self-control the collaboration. A SmartSociety application developer can indicate which patterns to use.
+      %, while leaving the on-the-site organization to the peers themselves.
+      %
+      A collaborative pattern consists of the following elements:
+
+          %\begin{itemize}[\setlabelwidth{-}]
+          \begin{LaTeXdescription}
+            \item Relationship topology -- specifying different topologies (e.g., independent, tree, ring, sink, random) and relation types formalizing relationships among service units in a collective. The meaning of the relations is application specific, and can be used to express communication flow, data flow or command flow. 
+            
+            \item Collaboration environment -- specifying access to familiar external tools that the service units can use to collaborate among themselves (e.g., Google Docs, Dropbox). When a collective is formed, service units are provided with instructions and appropriate access credentials for the previously set up collaboration environment. 
+            
+            \item Communication channels -- analogously to the collaboration environment, the pattern should specify access to familiar external tools that the service units can use to communicate among themselves and with SSP. 
+            %Specification of channels in principle depends on the imposed topology. SSP cannot provide communication functionality between peers, nor between peers and the SSP. Therefore, all the communication should be performed using existing tools (e.g., mail, twitter, Skype). An adapter may be needed when the external tools is used to communicate with SSP. 
+            
+            \item Elasticity policies -- definitions of metrics to be monitored and algorithms for collective composition and adaptation to keep metric values within required limits.
+
+            \item Security and privacy policies -- policies to restrict communication to specific (sub-)collective or to predefined communication channels.
+            
+          \end{LaTeXdescription}
+          %\end{itemize}
+
+          %\FloatBarrier
+
+    \subsection{Motivating Scenario}
+    \label{sec:intro:scenario}
+
+      % Let us consider a municipality which wants to leverage SmartSociety platform to build and deploy a distributed application for emergency response. A SmartSociety application is developed and deployed on the platform. Citizens register to participate and either download a dedicated peer app on their devices, or participate (even concurrently) via web interface from arbitrary devices. By registering, the citizens (i.e., peers from now on) become eligible to participate and to be invited to join different possible collectives belonging to this SmartSociety application.
+      % %
+      % We will first describe a general scenario to help better understand one possible usage context.\footnote{The scenario was chosen as a representative of a class of similarly complex tasks requiring active human participation. Other examples may include: crowd-powered smart-city management, locals-driven tourist guidance or car-sharing scenarios.} 
+      % Later in the paper \hl{add Section number} will consider a particular use-case belonging to this scenario that will be used 
+      % %throughout the remainder of the paper 
+      % as a running example to showcase \mdl's functionality.
+
+
+      % %\emph{General scenario}---
+      % A local flooding occurred. Part of the municipal territory is covered with water. Part of the road connections are therefore cut off. Some citizens may have stayed or could not move out of their buildings/houses. Transportation is affected. Certain objects may be endangered - buildings, passages, bridges. Citizen collectives are dispatched to track and maintain a real-time map of viable ground routes and take pictures that help assess the state of the important objects.
+      % %
+      % The peer-to-peer collaboration is preferably executed with the support of well-known external software tools (peers). Therefore, each collective is provided with an external virtual collaboration and coordination environment. For example, a collective is given a URL to access a Google map on which they can enter markers (road under water, house damaged, people inside), credentials for a cloud-based storage service (e.g., Dropbox/ownCloud) where they can upload the GPS-annotated pictures of the objects, as well as a Twitter hashtag with which they can annotate tweets they can freely use to communicate between each other.
+
+%PREDICTIVE MAINTENANCE
+      Let us consider a smart-city \emph{maintenance provider} (\emph{MP})--- a company running a monitoring center covering thousands of sensors and equipment systems geographically dispersed in numerous smart buildings (e.g., Galaxy \cite{Galaxy}). The MP provides the centralized service of both \emph{predictive} and \emph{corrective} maintenance to its customers (building owners/tenants). This means that the center actively monitors events originating from various sensors, performs Complex Event Processing (CEP) on these data flows, and if a potential or actual malfunction is detected dispatches collectives of experts to analyze the situation in detail, and, if necessary, perform the physical maintenance work on the ground. The experts are contracted to work on-demand with the MP, subject to their availability.
+      %
+      %
+      Since each equipment manufacturer defines different issue analysis and reparation procedures, when equipment from different manufacturers is interconnected in a smart building, detecting a cause of an anomaly event sequence cannot easily be done by following prescribed procedures. 
+      %
+      The complexity grows further when considered at the scale of a smart city, with thousands of building, each with a unique equipment mix, age, environment, and agreed service-level. Therefore, such a scenario does not lend itself well to a workflow type of orchestration. Rather, collectives of human experts perform loosely-controlled collaboration patterns (Section~\ref{sec:intro:context}) in order to detect and repair the problem in the most efficient way, considering the particular context, and making use of supporting software tools when needed (e.g., for data analysis, communication). 
+
+    \subsection{Design Requirements}
+    \label{sec:intro:reqs}
+
+      Based on the previously described desirable characteristics of HDA-CASs and the intended usage context of the SmartSociety platform
+      %, and the presented scenario, 
+      we can formulate the following \mdl{} design requirements:
+      
+      \begin{enumerate}
+        \item \textbf{Virtualization}---supporting heterogeneous human and machine service units as uniformly addressable entities; Supporting `collective' as a first-class, dynamically-defined entity.
+        %
+        \item \textbf{Heterogeneity}---supporting various types of communications channels (protocols) between the platform and service units as well as among service units/collectives, transparently to the platform user.
+        %
+        \item \textbf{Communication}---providing primitives for: message transformation, routing, delivery with configurable options (e.g., retries, expiry, delayed, acknowledged).
+        %
+        \item \textbf{Persistence}---message persistence and querying.
+        %
+        %\item \emph{Interpretation}---message interpretation service for peers.
+        %
+        \item \textbf{Scalability}---ability to handle large number of intermittently available service units.
+      \end{enumerate}
+%\hl{PUT HERE A LINE WHY EXISTING SOLUTIONS ARE NOT GOOD}
+      %%Note that  \mdl{} does not need to provide an environment for peers to actually execute the task, nor does it strive to be the only possible communication channel for peers participating in the task execution.
+      
+%\hl{go through paper and put HDA-CAS instead of SmartSociety where appropriate}
+
+\figfull[0.85]{smartcom-architecture}{Simplified architecture of the \mdl{} middleware.}
+
+\section{Middleware Design and Architecture}
+\label{sec:middleware}
+
+  %\hl{Philipp+Ognjen 2p}. Present the Middleware design on high level explaining architectural choices to fulfill REQs.
+
+  Figure~\ref{fig:smartcom-architecture} shows the conceptual architecture of the \mdl{} middleware. The \emph{HDA-CAS Platform} components (e.g., executing application modules) pass the messages intended for collectives to the \emph{Communication Engine} through a public API. The task of the Communication Engine is to effectively virtualize the notions of `collective' and `service unit (SU)' for the HDA-CAS platform. This means that the communication with different service units and collectives has to be handled transparently to the HDA-CAS platform, independent of unit's actual type and availability. 
+  %Communication engine's principal components are the Messaging and Routing Manager and the Adapter Manager.
+  In the following sections, for brevity, when referring to the communicational aspect of SU's functionality we will use the short term ``peer'' denoting the computing element within the SU that is the sender or receiver of information/data; and the term ``adapter'' denoting the middleware component in charge of handling the communication.
+
+  \subsection{Messaging and Routing}
+  \label{sec:middleware:routing}
+
+    All communication between the peers and the platform is handled asynchronously using messages. A queue-based \emph{Message Broker} is used to decouple the execution of \mdl's components and the communication with peers. 
+    %
+    \mdl{} supports unicast as well as multicast messages. Therefore peers can be addressed as collectives and the \mdl{} will take care of sending the message to every single member of the collective. 
+    %
+	
+    The \emph{Messaging and Routing Manager} (MRM) is \mdl's principal entry point for HDA-CASs. It consists of the following components:
+    \begin{inparaenum}
+      \item The \emph{Message Handler} takes incoming messages from HDA-CAS and transforms them into an internal representation. If the receiver of the message is a collective, it resolves the current member peers, and their preferred communication channels; 
+      %
+      \item The \emph{Routing Rule Engine} then determines the proper route to the peers, invoking the Adapter Manager to instantiate appropriate adapters in order to complete the route, if needed (see below); 
+      %
+      \item The \emph{Feedback Handler} waits for feedback messages received through feedback adapters and  passes them to the Message Handler. Afterwards they will be handled like normal messages again, and re-routed where needed, e.g., back to the HDA-CAS.
+    \end{inparaenum}
+
+    
+    A \emph{route} may include different communication channels as delivery start/endpoints. Figure~\ref{fig:routes} shows the conceptual overview of \mdl's routing. For each message the route will be determined by the Routing Rule Engine using the pipes-and-filters pattern, determining the route based on the  message properties: receiver ID, message type and message subtype, with decreasing priority. 
+    %There are three filtering steps based on message properties: receiver ID, message type and message subtype. Each step will determine the route based on the property that is handled in the particular step and a mapping of that property to identifiers, calculate an intersection of the current result and the received list of previous steps and forward the resulting list to the next step. If one property is empty or null, the appropriate step will be skipped. The result is a list of routes that matches the given message.
+	  % 
+    Note that there may be multiple routes per message (e.g., a single peer can be contacted using a mobile application and/or SMS, or access the system via a mobile app and web browser concurrently).
+
+    \figcol[1.0]{routes}{Messages are routed to Peer Adapters ($P_a$) which forward the messages to the corresponding Peers ($P_1$ to $P_5$). Feedback is sent back by human peers, software peers (e.g., Dropbox) and sensors using Feedback Adapters ($F_a$). The HDA-CAS Platform can also send and receive messages.}
+
+  \subsection{Adapters}
+  \label{sec:adapters}
+
+    In order to use a specific communication channel, an associated \emph{adapter} needs to be instantiated. The communication between peers and the adapters is unidirectional--- \emph{peer adapters} are used to send messages to the peers; \emph{feedback adapters} are used to receive messages from peers. 
+    %
+    \mdl{} originally provides some common peer/feedback adapters  (e.g., SMTP/POP, Dropbox, Twitter). In addition, being developed in the context of a research project, it also provides adapters for dedicated SmartSociety mobile/web peer apps. When an HDA-CAS requires the \mdl{} to handle a new communication channel, it needs to provide an appropriate adapter implementation. Afterwards, \mdl{} will instantiate the new adapter when needed.
+
+    The role of adapters should be considered from the following two perspectives:
+    \begin{inparaenum}[\itshape i)]
+    \item functional; and 
+    \item technical.
+    \end{inparaenum}
+
+    Functionally, the adapters allow for:
+    \begin{inparaenum}[\itshape a)]
+    \item Hybridity --- by enabling different communication channels to and from peers;
+    \item Scalability --- by enabling \mdl{} to cater the dynamically changing number of peers;
+    \item Extensibility --- new types of communication and collaboration channels can easily be added at a later stage transparently to the rest of the HDA-CAS platform.
+    \item Usability --- human peers are not forced to use dedicated applications for collaboration, but rather freely communicate and (self-)organize among themselves by relying on familiar third-party tools.
+    \item Load Reduction and Resilience --- by requiring that all the feedback goes exclusively and unidirectionally through external tools first, only to be channelled/filtered later through a dedicated feedback adapter, the \mdl{} is effectively shielded from unwanted traffic load, delegating the initial traffic impact to the infrastructure of the external tools. At the same time, failure of a single adapter will not affect the overall functioning of the middleware.
+    \end{inparaenum}
+
+    %For example, the peer might upload a 5MB photo to his Dropbox folder, while \mdl{} will just notify the send one simple msg through the middleware}).
+
+    \figcoltop[0.85]{api}{Partial representations of the \mdl's APIs and message flow.}
+
+    Technically, the primary role of adapters is to perform the message format transformation. Optional functionalities include: message filtering, aggregation, encryption, acknowledging and delayed delivery. Similarly, the adapters are used to interface \mdl{} with external software services, allowing the virtualization on third party tools as common software peers.
+
+
+    The \emph{Adapter Manager} is the component responsible for managing the adapter lifecycle (i.e., creation, execution and deletion of instances), elastically adjusting the number of active instances from a pool of available adapters. This allows the \mdl{} to scale the number of active connections up and down as needed. This is especially important when dealing with human peers, due to their inherent periodicity, frequent instability and unavailability, as well as for managing a large number of connected devices, such as sensors. The Adapter Manager consists of following subcomponents: 
+    %Adapter Handler, Adapter Execution Engine and Address Resolver.
+
+    \begin{IEEEenumerate}
+      \item \emph{Adapter Handler}: managing adapter instance lifecycle. It handles the following adapter types:  
+            \begin{inparaenum}[\itshape i)]
+              \item Stateful peer adapters--- peer adapters that maintain conversation state (e.g., login information). For each peer a new instance of the adapter will be created and handled by the Adapter Manager; 
+              %The adapter is thread-safe by design since only one thread executes the adapter at a time.
+              %
+              \item Stateless peer adapters--- peer adapters that maintain no state. An instance of an adapter can send messages to multiple peers; 
+              %Usually only one thread executes the adapter but with increasing load further threads might execute the adapter and send messages in parallel. Hence that the stateless peer adapter is not thread safe and should be designed in a way that no synchronisation is required.
+              %
+              \item Feedback pull adapters--- adapters that actively poll software peers for feedback. They are created on demand by applications running on the HDA-CAS platform and will check regularly for feedback on a given communication channel (e.g., check if a file is present on an FTP server);
+              %
+              \item Feedback push adapters--- adapters that wait for feedback from human/machine peers. 
+              %They are also created by applications running in the Task Execution Engine and will listen on a communication channel for incoming messages (e.g., email push notification).
+            \end{inparaenum}
+      \item \emph{Adapter Execution Engine}: executing the active adapters.
+      \item \emph{Address Resolver}: mapping adapter instances with peers' external identifiers (e.g., Skype/Twitter username) in order to initiate the communication.
+    \end{IEEEenumerate}
+
+
+    Feedback messages from peers (e.g., subtask results) or external tools (e.g., Dropbox file added, email received on a mailing list) are consumed by the adapters either by a push notification or by pulling in regular intervals (more details in Section~\ref{sec:impl}). 
+    
+    Figure~\ref{fig:api} shows the simplified APIs of the previously described components, as well as the message flow among \mdl's components.
+    Due to space constraints, a detailed description of the described architectural components and their implementation, as well as the full API specification is provided in the supplement materials\footnote{https://github.com/tuwiendsg/SmartCom/wiki}.\addtocounter{footnote}{-1}
+    %\figcol[0.85]{api}{Partial representations of the \mdl's APIs and message flow.}
+
+  \subsection{Other Functionalities}
+  \label{sec:middleware:other}
+
+    All sent and received messages as well as internal messages are persisted in a NoSQL database. Stored messages can be queried and analyzed through the \emph{MessageQuery} public API (e.g., to derive metrics or identify conditions for applying incentives).
+    %
+    Since messages can be of arbitrary subtype and contain an arbitrary payload, human peers (and their local third-party applications) might not know how to interpret the message. The \emph{MessageInfoService} provides:
+    \begin{inparaenum}[\itshape a)]
+        \item The semantic meaning/description of message type and contents in a human-readable way; 
+        \item Dependencies to other messages;
+        \item Timing constraints (e.g., expiry, priority).
+    \end{inparaenum}
+    %
+    This is especially useful when supporting complex task acceptance negotiations, where human peers are required to fully understand the message meaning and send back valid answers. 
+    %
+    Currently, the service annotates the message field types, provides a natural-language description of the expected fields contents and provides a state-machine description describing the allowed message exchange sequence with respect to dependency and timing constraints. The service can also be extended to provide an ontology of message types enabling machine-readable message descriptions, and use of personal software agents searching for tasks and participating in negotiations on behalf of human peers \cite{KobiGal}. 
+
+    
+ 
+      
+\section{Implementation \& Illustrative Example}
+\label{sec:impl}
+
+  
+  \mdl{} prototype
+  was implemented in Java and can be used directly by HDA-CAS platforms running on the Java Virtual Machine. Additionally, other platforms can interact with \mdl{} using the set of provided APIs\footnotemark. 
+  The prototype comes with some standard adapters (e.g., Email, Twitter, Dropbox) implemented. 
+  Additional third-party adapters can be loaded as plug-ins and instantiated when needed.
+  \mdl{} uses MongoDB\footnote{\url{http://www.mongodb.org}} as a database system for its various subsystems. Depending on the usage of the middleware, either an in-memory or dedicated database instances of MongoDB can be used. To decouple the execution of the HDA-CAS platform and the communication we use Apache ActiveMQ\footnote{\url{http://activemq.apache.org}} as the message broker.
+  Additional information on the implementation, usage and the source code can be found on GitHub\footnote{https://github.com/tuwiendsg/SmartCom}. 
+
+
+
+  \subsection{Use-Case Walkthrough}
+
+    Based on the motivating scenario presented in Section~\ref{sec:intro:scenario} we will now formulate a concrete use-case to validate the presented design and its fulfillment of the stated requirements:
+
+    \emph{A predictive maintenance SmartSociety application receives sensor readings from a smart building and performs Complex Event Processing (CEP) on them. If an indication for a potential malfunction is detected, further investigation is required. A collective (COL1) of available human experts is formed\footnote{Selection of collective peers is out of scope of this paper.} and a collaborative pattern imposed (Section~\ref{sec:intro:context}). The pattern appoints a leading expert to manage the peer collaboration within the collective and sets up a Dropbox repository for sharing the findings and equipment logs between the SmartSociety application and the collective. Additionally, it provides to the COL1 manager the contact details of the manufacturer of the malfunctioning equipments in case additional consultations are required. Finally, \mdl{} also provides COL1 peers with mediated access to a data analysis tool (e.g., Splunk\footnote{\url{www.splunk.com}}).
+    }
+
+    \figcol[1.0]{use-case}{
+    Supporting predictive maintenance use-case. Collectives of human expert and software service units participate in a joint collaboration to identify the cause of a detected malfuntion event.}
+    
+    
+    Figure~\ref{fig:use-case} shows the two collectives participating in this scenario. COL1 containing human expert servise units (SUs) and a single software SU --- the Dropbox service. Furthermore, each human SU is assigned a dedicated peer adapter ($P_a$) instance, while for the Dropbox service, both a $P_a$ and a feedback adapter ($F_a$) instance are executed, in order to support two-way communication with the SmartSociety platform. COL2 contains a single SU that does data analysis. To support two-way communication we introduce again a $P_a$ and a $F_a$.
+
+    The use-case starts by SmartSociety application notifying peers that their participation is needed (Fig.~\ref{fig:use-case}, \texttt{1}\degree). Some peers expressed in their profiles the preference for being notified by SMS, others by email. To send an SMS \mdl{} reads the phone number of a peer from its profile and hands it to the stateless SMS adapter. The adapter sends the message using the most cost-efficient mobile operator. Those peers that prefer to be contacted through email will be sent an email using a stateless email adapter through an external mail service.
+    %
+    The contents of the message are provided by the SmartSociety application. In this case, the message contains the URL pointing to the description of the detected event, Dropbox repository URL and access tokens for sharing the results, the name and contact details of the selected collective manager as well as a natural language description of the required activities and contractual terms. Furthermore, the manager is sent the contact details of the equipment manufacturer's customer service, and the address of another collective -- COL2, which in practice contains a single software peer, the Splunk service.
+    %The SMS’s or emails are delivered to the peers by the respective Peer Adapters.
+    %, described later in more detail. 
+    
+    For the sake of simplicity, we assume that expert peers do accept the terms and participate in COL1. The manager freely organizes the collaboration in COL1. Human peers examine the logs. At a certain point, they need to run an additional data analysis on the log. The collaboration pattern foresees that if a file with predefined filename is deposited in the shared Dropbox repository, the dedicated feedback adapter would pick up that file (\texttt{2}\degree) and forward it to the COL2 for analysis. The middleware ensures that the feedback pull adapter for Dropbox regularly checks if there are new files available (e.g., once a minute).
+	  The system will then create and send a message to the Splunk Peer Adapter which contains the location of the file and further information on the analysis (\texttt{3}\degree). Once Splunk has finished analyzing the data, Splunk will deposit the results file back to the Dropbox repository (\texttt{4}\degree~+~\texttt{5}\degree) and its feedback push adapter will push a multicast notification message to the COL1 members (\texttt{1}\degree~again). The COL1 can then continue their work.
+
+    % Once at the given location, the peer takes the picture and at some point uploads it to the given Dropbox url authenticating with the access token. A feedback adapter regularly checks the Dropbox folder. When a new picture is discovered, it informs the appropriate HDA-CAS application through a previously registered callback function. 
+
+    % In the case of Dropbox polling the peers do not actively send the information. On the other hand, if a peer needs to inform the HDA-CAS that an object cannot be approached for photographing, the peer will want to actively send a message to HDA-CAS. In this case, the use-case foresees that the peer send a message with a predefined subject line to a dedicated email address. He does so using his favorite email application. A feedback adapter that listens to that mail server inspects the received message, and decides whether to forward it to the HDA-CAS application, converting it to the internal message format; or discard the email, in case it detects it is a spam message, thus effectively performing message filtering and transformation.
+%\FloatBarrier
+\section{Related Work}
+\label{sec:relwork}
+
+	%SmartCom presents a novel way of communication within HDA-CAS, its subsystems and peers. We are not aware of any research projects that deal with such a system but there have been publications of other FoCAS members which are related and dedicated to the same purpose.
+
+  The research field of HDA-CAS is new, but highly varied, and in its many niches builds upon different founding technologies and research results, spanning research areas, such as: autonomous agents, robotics, bio-inspired collectives, human-provided services, crowdsourcing and web-scale workflow technologies. 
+	%
+  \emph{Multi-agent based systems} focus on the peer-to-peer communication between agents, which are usually considered as software entities. The main focus lies on interaction between those agents which act independently of each other. Approaches on how to handle communication in MAS have been made by the ``Foundation for Intelligent Physical Agents''~\cite{FIPA} (FIPA), which were used for example in the Java Agent DEvelopment (JADE) Framework~\cite{JADE}. Another popular language is the KQML~\cite{KQML} (Knowledge Query and Manipulation Language). 
+  Our approach, on the other hand, also incorporates humans as first-class actors and focuses on the interaction of the humans with the system. 
+  %a direct communication between peers would be possible in general but is not considered as the default behaviour.
+  In~\cite{Cabri1}, authors propose a middleware that supports communication among agents on different platforms and programming languages. They use a different runtime for each platform and exchange messages between those runtimes to achieve a cross-platform communication of agents. Compared to our approach it focuses on the peer-to-peer interaction instead of the interaction of the system with peers. The intention of the middleware is to exchange the messages between the runtime systems compared to direct message exchange with peers in our approach.
+  %
+  In \emph{Swarm Robotics} the work on peer communication is multifaceted. In the ASCENS project~\cite{Zambonelli} one of the communication strategies relies on the visual communication~\cite{VisualComm}. The coordination is decentralised, contrarily to our approach, which requires a centralised component that coordinates the communication. Some swarm robotic projects/algorithms completely avoid communication among peers (e.g.,~\cite{BEECLUST}).
+  %
+  \emph{Service-based approaches} usually involve addressing peers as Web Services. For example the ALLOW Ensembles project~\cite{Andrikopoulos} concentrates on the concept of cell ensembles, which consist of cells that have a defined behaviour. They use BPEL4Chor~\cite{BPEL4Chor} for the communication between cells, which allows communication between web services. 
+  %Using additional extensions like WS-BPEL4People\cite{BPEL4People} or WS-HumanTask\cite{HumanTask} one could also incorporate human activities. Other approaches use an SQL like processing system\cite{Humanpowered} that makes use of human capabilities.
+  The ASCENS project focuses on the peer-to-peer approach where some peers of the system know at least some other peers in the system~\cite{AutonomicCloud}. They use Pastry~\cite{Pastry} and extend it with the SCRIBE protocol~\cite{Scribe} to support any- and multi-casts. As previously shown, this behavior differs from ours, in that we do not support anycast, but multicast specifically within collective boundaries.
+  %
+  \emph{Social Computing platforms} like Jabberwocky~\cite{Jabberwocky} or TurKit~\cite{Turkit} utilize human capabilities to solve problems. However, they rely on existing crowdsourcing platforms and adopt their model of human peers, not supporting hybrid machine/human collectives.
+
+
+\section{Conclusions and Future Work}
+\label{sec:conclusion}
+
+  In this paper we presented \mdl{} --- a middleware for SmartSociety platform, a typical HDA-CAS. \mdl{} aims to tackle hybridity in a variety of aspects, including different kinds of supported computations (human- vs. machine-based service units), different channels of communication, and loose-coupling to promote use of familiar third-party services. This heterogeneity is of high importance in order to create a platform, which is able to scale to a potentially high number of service units organized in multiple dynamic collectives. \mdl{} allows addressing collectives of service units transparently to the HDA-CAS, relieving the HDA-CAS programmer the duty to keep track of current members of a collective, allowing the collective to scale up and down when needed seamlessly. The described design was chosen to fulfill the outlined requirements, and was validated through a prototype implementation. 
+
+  The focus of our future research will be on modelling the primitives for integrated monitoring and execution of elasticity actions, such as imposing of optimal topologies, dynamical adjustment of collective members, and support for incentive application. Currently, these actions have to be fully specified on the HDA-CAS (SmartSociety) application level, presenting an unnecessary burden for the developers.
+
+
+
+
+
+
+
+%\noindent {\bf Acknowledgment: }
+\section*{Acknowledgment}
+This work is supported by the EU FP7 SmartSociety project under grant N\textsuperscript{\underline{o}} 600854.
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\begin{thebibliography}{1}
+
+% \bibitem{IEEEhowto:kopka}
+% H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+%   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
+\bibitem{fausto}
+F.~Giunchiglia and V.~Maltese and S.~Anderson and D.~Miorandi. \emph{Towards Hybrid and Diversity-Aware Collective Adaptive Systems}, First FOCAS Workshop on Fundamentals of Collective Systems @ECAL, 2013. http://eprints.biblio.unitn.it/4214/
+
+\bibitem{FoCASBook}
+S.~Anderson et al. \emph{FoCAS Book: Adaptive Collective Systems – Herding Black Sheep}, Open publication, ISBN pending, 2013. http://focas.eu/documents/adaptive-collective-systems.pdf
+
+\bibitem{SmartSocBook}
+D.~Miorandi and V.~Maltese and M.~Rovatsos and A.~Nijholt and J.~Stewart. \emph{Social Collective Intelligence: Combining the Powers of Humans and Machines to Build a Smarter Society}, ISBN 978-3-319-08680-4, Springer, 2014.
+
+% \bibitem{MongoDB}
+% MongoDB. http://www.mongodb.org.
+
+\bibitem{Galaxy}
+Pacific Contorls Galaxy. http://www.pacific-galaxy.com/
+
+%\bibitem{GitHub}
+%SmartCom on GibHub. https://github.com/tuwiendsg/SmartCom.
+
+% \bibitem{ActiveMQ}
+% Apache Active MQ. http://activemq.apache.org/. Accessed: 2014-07-09.
+
+\bibitem{Cabri1}
+G.~Cabri, E.~Domnori and D.~Orlandini. \emph{Implementing Agent Interoperability between Language-Heterogeneous Platforms}, Enabling Technologies: Infrastructure for Collaborative Enterprises (WETICE), 2011 20th IEEE International Workshops on , vol., no., pp.29,34, 27-29 June 2011
+
+\bibitem{FIPA}
+Foundation for intelligent physical agents. http://www.fipa.org/. Accessed: 2014-07-09.
+
+\bibitem{JADE}
+Java agent development framework. http://jade.tilab.com/. Accessed: 2014-05-28.
+
+\bibitem{KQML}
+T.~Finin, R.~Fritzson, D.~ McKay, and R. McEntire. \emph{Kqml as an agent communication language}. In Proceedings of the third international conference on Information and knowledge management, pages 456–463. ACM, 1994.
+
+\bibitem{VisualComm}
+N.~Capodieci and G.~Cabri. \emph{Collaboration in swarm robotics: A visual communication approach}, Collaboration Technologies and Systems (CTS), 2013 International Conference on , vol., no., pp.195,202, 20-24 May 2013.
+
+\bibitem{Zambonelli}
+F.~Zambonelli, N.~Bicocchi, G.~Cabri, L.~Leonardi, and M.~Puviani. 2011. \emph{On Self-Adaptation, Self-Expression, and Self-Awareness in Autonomic Service Component Ensembles}. In Proceedings of the 2011 Fifth IEEE Conference on Self-Adaptive and Self-Organizing Systems Workshops (SASOW '11). IEEE Computer Society, Washington, DC, USA, 108-113.
+
+\bibitem{BEECLUST}
+D.~Kengyel, R.~Thenius, K.~Crailsheim, and T.~Schmickl: \emph{Influence of a Social Gradient on a Swarm of Agents Controlled by the BEECLUST Algorithm}. Proceedings of the 12th European Conference on Artificial Life (2013), 1041-1048.
+
+\bibitem{Andrikopoulos}
+A. V. Andrikopoulos, A. Bucchiarone, S. Gomez Saez, D. Karastoyanova, and C. Antares Mezzina. \emph{Towards Modelling and Execution of Collective Adaptive Systems}. 9th International Workshop on Engineering Service-Oriented Applications WESOA 2013), In conjunction with ICSOC 2013, December 2nd 2013, Berlin, Germany.
+
+\bibitem{BPEL4Chor}
+G.~Decker; O.~Kopp; F.~Leymann; M.~Weske, \emph{BPEL4Chor: Extending BPEL for Modeling Choreographies}, Web Services, 2007. ICWS 2007. IEEE International Conference on , vol., no., pp.296,303, 9-13 July 2007.
+
+%\bibitem{BPEL}
+%OASIS: \emph{Web Services Business Process Execution Language} Version 2.0 (April 2007).
+
+%\bibitem{BPEL4People}
+%OASIS: \emph{WS-BPEL Extension for People} Version 1.0 (June 2007).
+
+% \bibitem{HumanTask}
+% OASIS: \emph{Web Services Human Task} Version 1.0 (June 2007).
+
+% \bibitem{Humanpowered}
+% A.~Marcus, E.~Wu, D.~Karger, S.~Madden, and R.~Miller. \emph{Humanpowered sorts and joins}. Proc. VLDB Endow., 5(1):13–24, September 2011.
+
+\bibitem{AutonomicCloud}
+P.~Mayer, A.~Klarl, R.~Hennicker, M.~Puviani, F.~Tiezzi, R.~Pugliese, J.~Keznikl, and T.~Bures. \emph{The Autonomic Cloud: A Vision of Voluntary, Peer-2-Peer Cloud Computing}. In Proceedings of 3rd Workshop on Challenges for Achieving Self-Awareness in Autonomic Systems, pages 1–6, Philadelphia, USA, September 2013.
+
+\bibitem{Pastry}
+A.~I.~T.~Rowstron and P.~Druschel, \emph{Pastry: Scalable, decentralized object location, and routing for large-scale peer-to-peer systems}, in Proceedings of the IFIP/ACM International Conference on Distributed Systems Platforms Heidelberg, ser. Middleware ’01. London, UK, UK: Springer-Verlag, 2001, pp. 329–350.
+
+\bibitem{Scribe}
+M.~Castro, P.~Druschel, A.-M.~Kermarrec, and A.~I.~Rowstron, \emph{Scribe: A large-scale and decentralized application-level multicast infrastructure}, Selected Areas in Communications, IEEE Journal on, vol. 20, no. 8, pp. 1489–1499, 2002.
+
+\bibitem{Jabberwocky}
+S. Ahmad, A. Battle, Z. Malkani, and S. Kamvar. 2011. \emph{The jabberwocky programming environment for structured social computing}. In Proceedings of the 24th annual ACM symposium on User interface software and technology (UIST '11). ACM, New York, NY, USA, 53-64. DOI=10.1145/2047196.2047203 http://doi.acm.org/10.1145/2047196.2047203
+
+\bibitem{Turkit}
+G.~Little, L.~B.~Chilton, M.~Goldman, and R.~C.~Miller. \emph{Turkit: tools for iterative tasks on mechanical turk}. In Proceedings of the ACM SIGKDD workshop on human computation, pages 29–30. ACM, 2009.
+
+\bibitem{truongijcis}
+ H.-L. Truong, S.~Dustdar, and K.~Bhattacharya. \emph{Conceptualizing and Programming Hybrid Services in the Could}. Int. J. Coop. Info. Syst. 22, 1341003 (2013) DOI: 10.1142/S0218843013410037
+
+\bibitem{KobiGal}
+Y.~Gal, S.~Kraus, M.~Gelfand, H.~Khashan, and E.~Salmon. \emph{An Adaptive Agent for Negotiating with People in Different Cultures}. In  ACM Trans. Intell. Syst. Technol. vol. 3, no. 1, ACM, 2011. DOI: 10.1145/2036264.2036272
+
+\end{thebibliography}
+
+
+\end{document}
+
+
+
+%The following commented text is mine, so it can be freely used and altered
+
+% A client-written SmartSociety application defines, among other things, a set of messages that can be exchanged with peers and their semantics. The application consists of two types of modules. A server-side module, running on SSP, and a module running on the peer device (actually, depending on the actual operating system that the peer uses we may have multiple types of peer apps, but for the sake of explanation, let us assume that only one exists). 
+
+% As both modules belong to the same SS application, they have the common understanding of the message semantics which delimits what kind of interactions they can do. The messages they exchange can be used to propose working on a task, accept the work, quit, notify of changes, notify of incentives, send collaboration requests and messages to other collective members, etc. 
+
+% We mentioned that the SSP should also set up a collaborative environment for a collective. However, this does not assume that the environment should be part of the peer application. Instead, the peer will just receive through her app the addresses and access credentials for using the different collaborative tools communication channels, and communicating with other peers. Communication with other peers in the collective through the predefined messages is done through SSP. So, all the message exchange that the application designer considers important for the application should go through SSP middleware, but if the application designer wishes so, a free peer-to-peer communication can be allowed. 
+
+% For example, if the application promises paying out a referral bonus to a peer who brings in a quality collaborator in the collective, then this invitation to the collective must be done through SSP, in order that this action can be officially recorded and taken account of. On the other hand, free, unofficial communication of peers may be encouraged by automatically setting up an IRC chat room.
+% Or, peers can be asked to send all official messages relevant to the collaboration to an official mailing list, which is managed by the SSP, while the unofficial communication channels may not be specified.
+
+% Important thing here is to emphasize that no computation takes place within SSP or the peer module. Rather, the SSP only takes care of coordination and collaboration. Task descriptions, computation and utility tools and most communication channels lie outside of the SSP platform on user defined locations. SSP just coordinates and monitors the execution. 
+% For example, if for participating in a collective a number of peers were issued credentials to access a dropbox folder by the SSP application, then excluding a peer includes also revoking access rights to that folder. 
+
+%SmartSociety applications will be accessible via a variety of devices, online via the web and on mobile device
+
+
+
+
+% FIGURE EXAMPLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Note that IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command, the
+% \label for the overall figure must come after \caption.
+% \hfil must be used as a separator to get equal spacing.
+% The subfigure.sty package works much the same way, except \subfigure is
+% used instead of \subfloat.
+%
+%\begin{figure*}[!t]
+%\centerline{\subfloat[Case I]\includegraphics[width=2.5in]{subfigcase1}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}%
+%\label{fig_second_case}}}
+%\caption{Simulation results}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+
+% TABLE EXAMPLE
+% An example of a floating table. Note that, for IEEE style tables, the 
+% \caption command should come BEFORE the table. Table text will default to
+% \footnotesize as IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that IEEE does not put floats in the very first column - or typically
+% anywhere on the first page for that matter. Also, in-text middle ("here")
+% positioning is not used. Most IEEE journals/conferences use top floats
+% exclusively. Note that, LaTeX2e, unlike IEEE journals/conferences, places
+% footnotes above bottom floats. This can be corrected via the \fnbelowfloat
+% command of the stfloats package.
