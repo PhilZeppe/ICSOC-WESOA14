@@ -336,10 +336,11 @@ The middleware is able to handle numerous, intermittently available, human and s
 %\FloatBarrier
 \section{Related Work}
 \label{sec:relwork}
-
+  
 	
   In~\cite{Cabri1}, authors propose a middleware that supports communication among agents on different platforms and programming languages. They use a different runtime for each platform and exchange messages between those runtimes to achieve a cross-platform communication of agents. Compared to our approach it focuses on the peer-to-peer interaction instead of the interaction of the system with peers. The intention of the middleware is to exchange the messages between the runtime systems compared to direct message exchange with peers in our approach.
 
+  Popular Open-Source and proprietary Enterprise Service Busses and Integration Technologies provide - besides many other useful features - the same support and flexibility for custom adapters as \mdl{} does. On the other hand, many ESBs lack the support of multi-tenancy (e.g., Apache ServiceMix and JBoss ESB) or do have restrictions on implementing custom adapters (e.g., JBoxx ESB). Others do not support the dynamically enforcement of policies (e.g., WSO2 ESB) and there is in general no support of the addressing of collectives at all which is one of the key features of \mdl{}. Furthermore the support of humans interacting with the system is generally not considered.
 
   Service-oriented Collective Adaptive Systems usually involve addressing peers as Web Services. For example the ALLOW Ensembles project~\cite{Andrikopoulos} concentrates on the concept of cell ensembles, which consist of cells that have a defined behaviour. They use BPEL4Chor~\cite{BPEL4Chor} for the communication between cells, which allows communication between web services. 
   %Using additional extensions like WS-BPEL4People\cite{BPEL4People} or WS-HumanTask\cite{HumanTask} one could also incorporate human activities. Other approaches use an SQL like processing system\cite{Humanpowered} that makes use of human capabilities.
