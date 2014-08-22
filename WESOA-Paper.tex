@@ -119,13 +119,13 @@ The middleware is able to handle numerous, intermittently available, human and s
 
   \textbf{Contribution. }
   %
-  In the described motivational scenario the MP needs a platform to communicate with, deploy and orchestrate ad-hoc assembled, dynamic teams of human and machine service units in order to execute, often unpredictable, complex collaboraton patterns. An HDA-CAS, such as \textit{SmartSociety} \cite{SmartSocBook}, can fully suport these  requirements. In this paper, we present the design of one of the SmartSociety's core components: the \emph{virtualization and communication middleware} -- \mdl{}, providing the communication and virtualization primitives to support heterogeneity, collectivity and adaptiveness. Although developed for SmartSociety, \mdl{} is an independent component usable with to a wide number of HDA-CAS platforms.
+  In the described motivational scenario the MP needs a platform to communicate with, deploy and orchestrate ad-hoc assembled, dynamic teams of human and machine service units in order to execute, often unpredictable, complex collaboraton patterns. An HDA-CAS, such as \textit{SmartSociety} \cite{SmartSocBook}, can fully suport these  requirements. In this paper, we present the design of one of the SmartSociety's core components: the \emph{virtualization and communication middleware} -- \mdl{}, providing the communication and virtualization primitives to support heterogeneity, collectivity and adaptiveness. Although developed for SmartSociety, \mdl{} is an independent component usable with a wide number of HDA-CAS platforms.
 %
 %In this paper, we focus on one particular HDA-CAS representative -- the \textit{SmartSociety} \cite{SmartSocBook}; and present the design of the platform's \emph{virtualization and communication middleware} -- \mdl{}, providing the communication primitives to supporting the platform's heterogeneity, collectivity and adaptiveness requirements. However, the middleware's design is generally applicable to a wide number of HDA-CAS platforms.
 %
  %  The SmartSociety platform was designed to cater to these requirements, while \mdl{}, one of its core components, is the module responsible for managing all communicational aspects of it. 
 %
-   \mdl{} fulfills the following requirements characteristic of most service buses:
+   \mdl{} fulfills the following characteristic of most service buses:
      \begin{inparaenum}[a) \itshape]
         %
         \item \textit{Heterogeneity} -- supporting various types of communications channels (protocols) between the platform and service units as well as among service units/collectives, transparently to the HDA-CAS platform user.
@@ -146,7 +146,7 @@ The middleware is able to handle numerous, intermittently available, human and s
 	\item 
 	Communication with the collective members is transparent to the HDA-CAS, regardless of whether they are human or a machine-based, with \mdl{} interpreting the messages for the human-based service units; 
 	\item 
-	A single human, sensor or software service endpoint can participate in diffrent collectives concurrently, acting as a different service unit with different SLA, delivery and privacy policies. 
+	A single human, sensor or software service endpoint can participate in different collectives concurrently, acting as a different service unit with different SLA, delivery and privacy policies. 
 	\end{inparaenum}
 	These novel properties make \mdl{} especially suitable for supporting scenarios such as predictive maintenance. To the best of our knowledge, no other platforms or middleware systems offer the collective virtualization in a similar manner. 
 
@@ -156,13 +156,13 @@ The middleware is able to handle numerous, intermittently available, human and s
 
 \textbf{Paper Organization. }
   %
-  In the following section we present the operationl context of the \mdl{} middleware. In Section~\ref{sec:middleware} we present \mdl's architecture and design choices. In Section~\ref{sec:impl} we  describe the implementation and showcase a possible use in a realistic use-case. Section~\ref{sec:relwork} presents the related work. Section~\ref{sec:conclusion} concludes the paper.
+  In the following section we present the operationl context of the \mdl{} middleware. In Section~\ref{sec:middleware} we present \mdl's architecture and design choices. In Section~\ref{sec:impl} we  describe the implementation and illustrates a realistic use-case. Section~\ref{sec:relwork} presents the related work. Section~\ref{sec:conclusion} concludes the paper.
 
 
   \section{Operational Context}
     \label{sec:intro:context}
 
-      Figure~\ref{fig:smartsoc-highlevel} shows the high-level architecture of the SmartSociety platform and presents the \mdl's operational context. SmartSociety platform supports `programming' and execution of hybrid human-computer `computations'. These computations consist of different general-purpose tasks being submitted to the platform for execution. More precisely, the platform \emph{users} (e.g., a smart-city maintenance provider) submit complex tasks to a \emph{SmartSociety application} running on the platform. The application performs the task by assembling and engaging \textbf{collectives} of \textbf{service units} to execute the (sub-)tasks collaboratively.
+      Figure~\ref{fig:smartsoc-highlevel} shows the high-level architecture of the SmartSociety platform and presents \mdl's operational context. SmartSociety platform supports `programming' and execution of hybrid human-computer `computations'. These computations consist of different general-purpose tasks being submitted to the platform for execution. More precisely, the platform \emph{users} (e.g., a smart-city maintenance provider) submit complex tasks to a \emph{SmartSociety application} running on the platform. The application performs the task by assembling and engaging \textbf{collectives} of \textbf{service units} to execute the (sub-)tasks collaboratively.
 
       The service unit (SU) is an entity provisioned and utilized through service models (e.g., on-demand and pay-per-use use), as described in \cite{truongijcis}. An SU consists of:
         \begin{inparaenum}[\itshape i)]
@@ -256,7 +256,7 @@ The middleware is able to handle numerous, intermittently available, human and s
 
     Technically, the primary role of adapters is to perform the message format transformation. Optional functionalities include: message filtering, aggregation, encryption, acknowledging and delayed delivery. Similarly, the adapters are used to interface \mdl{} with external software services, allowing the virtualization on third party tools as common software peers.
     %
-    The \emph{Adapter Manager} is the component responsible for managing the adapter lifecycle (i.e., creation, execution and deletion of instances), elastically adjusting the number of active instances from a pool of available adapters. This allows scaling the number of active connections up and down as needed. This is especially important when dealing with human peers, due to their inherent periodicity, frequent instability and unavailability, as well as for managing a large number of connected devices, such as sensors. The Adapter Manager consists of following subcomponents: 
+    The \emph{Adapter Manager} is the component responsible for managing the adapter lifecycle (i.e., creation, execution and deletion of instances), elastically adjusting the number of active instances from a pool of available adapters. This allows scaling the number of active adapter instances out as needed. This is especially important when dealing with human peers, due to their inherent periodicity, frequent instability and unavailability, as well as for managing a large number of connected devices, such as sensors. The Adapter Manager consists of following subcomponents: 
     %Adapter Handler, Adapter Execution Engine and Address Resolver.
     %
     \begin{itemize}[$\bullet$]
@@ -276,7 +276,7 @@ The middleware is able to handle numerous, intermittently available, human and s
 	%
     Feedback messages from peers (e.g., subtask results) or external tools (e.g., Dropbox file added, email received on a mailing list) are consumed by the adapters either by a push notification or by pulling in regular intervals (more details in Section~\ref{sec:impl}). 
     %
-    Due to space constraints, a detailed description of the described architectural components and their implementation, as well as the full API specification is provided in the supplement materials\footnote{https://github.com/tuwiendsg/SmartCom/wiki}.\addtocounter{footnote}{-1}
+    Due to space constraints, a detailed description of the described architectural components and their implementation, as well as the full API specification is provided in the supplement materials\footnote{\url{https://github.com/tuwiendsg/SmartCom/wiki}}.\addtocounter{footnote}{-1}
     %\figcol[0.85]{api}{Partial representations of the \mdl's APIs and message flow.}
 
   \textbf{Other Functionalities.}
@@ -335,7 +335,7 @@ The middleware is able to handle numerous, intermittently available, human and s
     %The SMS’s or emails are delivered to the peers by the respective Peer Adapters.
     %, described later in more detail. 
     
-    For the sake of simplicity, we assume that expert peers do accept the terms and participate in COL1. The manager freely organizes the collaboration in COL1. Human peers examine the logs. At a certain point, they need to run an additional data analysis on the log. The collaboration pattern foresees that if a file with predefined filename is deposited in the shared Dropbox repository, the dedicated feedback adapter would pick up that file (\texttt{2}\degree) and forward it to the COL2 for analysis. The middleware ensures that \texttt{\href{https://github.com/tuwiendsg/SmartCom/blob/master/api/src/main/java/at/ac/tuwien/dsg/smartcom/adapter/InputPullAdapter.java}{FeedbackPullAdapter.java}} for Dropbox regularly checks if there are new files available (e.g., once a minute).
+    For the sake of simplicity, we assume that expert peers do accept the terms and participate in COL1. The manager freely organizes the collaboration in COL1. At a certain point, human peers need to run an additional data analysis on the log. The collaboration pattern foresees that if a file with predefined filename is deposited in the shared Dropbox repository, the dedicated feedback adapter would pick up that file (\texttt{2}\degree) and forward it to the COL2 for analysis. The middleware ensures that \texttt{\href{https://github.com/tuwiendsg/SmartCom/blob/master/api/src/main/java/at/ac/tuwien/dsg/smartcom/adapter/InputPullAdapter.java}{FeedbackPullAdapter.java}} for Dropbox \texttt{\href{https://github.com/tuwiendsg/SmartCom/blob/master/impl/src/main/java/at/ac/tuwien/dsg/smartcom/adapters/DropboxInputAdapter.java}{(DropboxFeedbackAdapter.java)}} regularly checks if there are new files available (e.g., once a minute).
 	  The system will then create and send a message to the Splunk Peer Adapter which contains the location of the file and further information on the analysis (\texttt{3}\degree). Once Splunk has finished analyzing the data, Splunk will deposit the results file back to the Dropbox repository (\texttt{4}\degree~+~\texttt{5}\degree) and its \texttt{\href{https://github.com/tuwiendsg/SmartCom/blob/master/api/src/main/java/at/ac/tuwien/dsg/smartcom/adapter/InputPushAdapter.java}{FeedbackPushAdapter.java}} will push a multicast notification message to the COL1 members (\texttt{1}\degree~again). The COL1 can then continue their work.
 
     % Once at the given location, the peer takes the picture and at some point uploads it to the given Dropbox url authenticating with the access token. A feedback adapter regularly checks the Dropbox folder. When a new picture is discovered, it informs the appropriate HDA-CAS application through a previously registered callback function. 
@@ -347,10 +347,8 @@ The middleware is able to handle numerous, intermittently available, human and s
   
 	
   In~\cite{Cabri1}, authors propose a middleware that supports communication among agents on different platforms and programming languages. They use a different runtime for each platform and exchange messages between those runtimes to achieve a cross-platform communication of agents. Compared to our approach it focuses on the peer-to-peer interaction instead of the interaction of the system with peers. The intention of the middleware is to exchange the messages between the runtime systems compared to direct message exchange with peers in our approach.
-
-  \hl{add references below}
   
-  Popular Open-Source and proprietary Enterprise Service Busses and Integration Technologies provide - besides many other useful features - the same support and flexibility for custom adapters as \mdl{} does. On the other hand, many ESBs lack the support of multi-tenancy (e.g., Apache ServiceMix and JBoss ESB) or do have restrictions on implementing custom adapters (e.g., JBoxx ESB). Others do not support the dynamically enforcement of policies (e.g., WSO2 ESB) and there is in general no support of the addressing of collectives at all which is one of the key features of \mdl{}. Furthermore the support of humans interacting with the system is generally not considered.
+  Popular Open-Source and proprietary Enterprise Service Busses and Integration Technologies provide - besides many other useful features - the same support and flexibility for custom adapters as \mdl{} does. On the other hand, many ESBs lack the support of multi-tenancy (e.g., Apache ServiceMix \cite{ApacheServiceMix} and JBossESB \cite{JBoss}) or do have restrictions on implementing custom adapters (e.g., JBossESB \cite{JBoss}). Others do not support the dynamically enforcement of policies (e.g., WSO2 ESB \cite{WSO2}) and there is in general no support of the addressing of collectives at all which is one of the key features of \mdl{}. Furthermore the support of humans interacting with the system is generally not considered.
 
   Service-oriented Collective Adaptive Systems usually involve addressing peers as Web Services. For example the ALLOW Ensembles project~\cite{Andrikopoulos} concentrates on the concept of cell ensembles, which consist of cells that have a defined behaviour. They use BPEL4Chor~\cite{BPEL4Chor} for the communication between cells, which allows communication between web services. 
   %Using additional extensions like WS-BPEL4People\cite{BPEL4People} or WS-HumanTask\cite{HumanTask} one could also incorporate human activities. Other approaches use an SQL like processing system\cite{Humanpowered} that makes use of human capabilities.
@@ -429,7 +427,14 @@ D.~Miorandi and V.~Maltese and M.~Rovatsos and A.~Nijholt and J.~Stewart. \emph{
 \bibitem{Cabri1}
 G.~Cabri, E.~Domnori and D.~Orlandini. \emph{Implementing Agent Interoperability between Language-Heterogeneous Platforms}, Enabling Technologies: Infrastructure for Collaborative Enterprises (WETICE), 2011 20th IEEE International Workshops on , vol., no., pp.29,34, 27-29 June 2011
 
+\bibitem{JBoss} 
+JBossESB. http://jbossesb.jboss.org/.
 
+\bibitem{ApacheServiceMix}
+Apache ServiceMix. http://servicemix.apache.org.
+
+\bibitem{WSO2}
+WSO2 ESB. http://wso2.com/.
 
 \bibitem{Andrikopoulos}
 A. V. Andrikopoulos, A. Bucchiarone, S. Gomez Saez, D. Karastoyanova, and C. Antares Mezzina. \emph{Towards Modelling and Execution of Collective Adaptive Systems}. 9th International Workshop on Engineering Service-Oriented Applications WESOA 2013), In conjunction with ICSOC 2013, December 2nd 2013, Berlin, Germany.
