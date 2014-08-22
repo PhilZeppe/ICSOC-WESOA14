@@ -225,7 +225,7 @@ The middleware is able to handle numerous, intermittently available, human and s
 	%    
     A \emph{route} may include different communication channels as delivery start-/endpoints. Figure~\ref{fig:routes} shows the conceptual overview of \mdl's routing. For each message the route will be determined by the Routing Rule Engine using the pipes-and-filters pattern, determining the route based on the  message properties: receiver ID, message type and message subtype, with decreasing priority. 
 	  % 
-    Note that there may be multiple routes per message (e.g., a single peer can be contacted using a mobile application and/or SMS, or access the system via a mobile app and web browser concurrently).
+    Note that there may be multiple routes per message (e.g., a single peer can be contacted using a mobile app, email and SMS concurrently).
 
     \figfloat[.75]{routes}{Messages are routed to Peer Adapters ($P_a$) which forward the messages to the corresponding Peers ($P_1$ to $P_5$). Feedback is sent back by human peers, software peers (e.g., Dropbox) and sensors using Feedback Adapters ($F_a$). The HDA-CAS Platform can also send and receive messages.}
 
@@ -345,16 +345,23 @@ The middleware is able to handle numerous, intermittently available, human and s
 \section{Related Work}
 \label{sec:relwork}
   
-	
-  In~\cite{Cabri1}, authors propose a middleware that supports communication among agents on different platforms and programming languages. They use a different runtime for each platform and exchange messages between those runtimes to achieve a cross-platform communication of agents. Compared to our approach it focuses on the peer-to-peer interaction instead of the interaction of the system with peers. The intention of the middleware is to exchange the messages between the runtime systems compared to direct message exchange with peers in our approach.
-  
-  Popular Open-Source and proprietary Enterprise Service Busses and Integration Technologies provide - besides many other useful features - the same support and flexibility for custom adapters as \mdl{} does. On the other hand, many ESBs lack the support of multi-tenancy (e.g., Apache ServiceMix \cite{ApacheServiceMix} and JBossESB \cite{JBoss}) or do have restrictions on implementing custom adapters (e.g., JBossESB \cite{JBoss}). Others do not support the dynamically enforcement of policies (e.g., WSO2 ESB \cite{WSO2}) and there is in general no support of the addressing of collectives at all which is one of the key features of \mdl{}. Furthermore the support of humans interacting with the system is generally not considered.
+  \mdl{} encompasses different design choices that, taken individually, can be compared with existing solutions. However, to the best of our knowledge, no existing system incorporates a similar set of functionalitites as the one \mdl{} offers to support an effective virtualization of communication for dynamic, hybrid human-machine collectives.
 
-  Service-oriented Collective Adaptive Systems usually involve addressing peers as Web Services. For example the ALLOW Ensembles project~\cite{Andrikopoulos} concentrates on the concept of cell ensembles, which consist of cells that have a defined behaviour. They use BPEL4Chor~\cite{BPEL4Chor} for the communication between cells, which allows communication between web services. 
+  Popular Open-Source and proprietary Enterprise Service Buses and Integration Technologies provide 
+  %- besides many other useful features - 
+  the same support and flexibility for custom adapters as \mdl{} does. On the other hand, many ESBs lack the support of multi-tenancy (e.g., Apache ServiceMix \cite{ApacheServiceMix} and JBossESB \cite{JBoss}) or do have restrictions on implementing custom adapters (e.g., JBossESB \cite{JBoss}). Others do not support the dynamical enforcement of policies (e.g., WSO2 ESB \cite{WSO2}) and there is in general no support of the addressing of collectives at all which is one of the key features of \mdl{}. Furthermore the support of humans interacting with the system is generally not considered.
+
+  
+  
+  
+
+  Service-oriented CASs usually involve addressing peers as Web Services, lacking the ability to communicate with peers using different communication channels, especially external tools. For example, the ALLOW Ensembles project~\cite{Andrikopoulos} concentrates on the concept of cell ensembles, which consist of cells that have a defined behaviour. They use BPEL4Chor~\cite{BPEL4Chor} for the communication between cells, which allows communication between web services. 
   %Using additional extensions like WS-BPEL4People\cite{BPEL4People} or WS-HumanTask\cite{HumanTask} one could also incorporate human activities. Other approaches use an SQL like processing system\cite{Humanpowered} that makes use of human capabilities.
   The ASCENS project focuses on the peer-to-peer approach where some peers of the system know at least some other peers in the system~\cite{AutonomicCloud}. They use Pastry~\cite{Pastry} and extend it with the SCRIBE protocol~\cite{Scribe} to support any- and multi-casts. As previously shown, this behavior differs from ours, in that we do not support anycast, but multicast specifically within collective boundaries.
   %
-  \emph{Social Computing platforms} like Jabberwocky~\cite{Jabberwocky} or TurKit~\cite{Turkit} utilize human capabilities to solve problems. However, they rely on existing crowdsourcing platforms and adopt their model of human peers, not supporting hybrid machine/human collectives.
+  In~\cite{Cabri1}, authors propose a middleware that supports communication among agents on different platforms and programming languages. They use a different runtime for each platform and exchange messages between those runtimes to achieve a cross-platform communication of agents. Compared to our approach it focuses on the peer-to-peer interaction instead of the interaction of the system with peers. The intention of the middleware is to exchange the messages between the runtime systems compared to direct message exchange with peers in our approach.
+  %
+  Social Computing platforms like Jabberwocky~\cite{Jabberwocky} or TurKit~\cite{Turkit} utilize human capabilities to solve problems. However, they rely on existing crowdsourcing platforms and rely on their communication model that does not supporting collectives at all. Furthermore, support for inter-peer communication and collaboration is very restricted. 
 
 
 \section{Conclusions and Future Work}
@@ -404,7 +411,7 @@ This work is supported by the EU FP7 SmartSociety project under grant N\textsupe
 %   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
 
 \bibitem{fausto}
-F.~Giunchiglia and V.~Maltese and S.~Anderson and D.~Miorandi. \emph{Towards Hybrid and Diversity-Aware Collective Adaptive Systems}, First FOCAS Workshop on Fundamentals of Collective Systems @ECAL, 2013. http://eprints.biblio.unitn.it/4214/
+F.~Giunchiglia and V.~Maltese and S.~Anderson and D.~Miorandi. \emph{Towards Hybrid and Diversity-Aware Collective Adaptive Systems}, 1st FoCAS Workshop on Fund. of Coll. Syst., 2013. http://eprints.biblio.unitn.it/4214/
 
 \bibitem{FoCASBook}
 S.~Anderson et al. \emph{FoCAS Book: Adaptive Collective Systems – Herding Black Sheep}, Open publication, ISBN pending, 2013. http://focas.eu/documents/adaptive-collective-systems.pdf
@@ -425,7 +432,7 @@ D.~Miorandi and V.~Maltese and M.~Rovatsos and A.~Nijholt and J.~Stewart. \emph{
 % Apache Active MQ. http://activemq.apache.org/. Accessed: 2014-07-09.
 
 \bibitem{Cabri1}
-G.~Cabri, E.~Domnori and D.~Orlandini. \emph{Implementing Agent Interoperability between Language-Heterogeneous Platforms}, Enabling Technologies: Infrastructure for Collaborative Enterprises (WETICE), 2011 20th IEEE International Workshops on , vol., no., pp.29,34, 27-29 June 2011
+G.~Cabri, E.~Domnori and D.~Orlandini. \emph{Implementing Agent Interoperability between Language-Heterogeneous Platforms}, 20th IEEE Intl. Workshop on Enabling Tech.: Infrastructure for Collab. Enterprises (WETICE), pp.29--34, Paris, 2011.
 
 \bibitem{JBoss} 
 JBossESB. http://jbossesb.jboss.org/.
@@ -437,10 +444,10 @@ Apache ServiceMix. http://servicemix.apache.org.
 WSO2 ESB. http://wso2.com/.
 
 \bibitem{Andrikopoulos}
-A. V. Andrikopoulos, A. Bucchiarone, S. Gomez Saez, D. Karastoyanova, and C. Antares Mezzina. \emph{Towards Modelling and Execution of Collective Adaptive Systems}. 9th International Workshop on Engineering Service-Oriented Applications WESOA 2013), In conjunction with ICSOC 2013, December 2nd 2013, Berlin, Germany.
+A. V. Andrikopoulos, A. Bucchiarone, S. Gomez Saez, D. Karastoyanova, and C. Antares Mezzina. \emph{Towards Modelling and Execution of Collective Adaptive Systems}. 9th Intl. Workshop on Eng. Service-Oriented Appl. (WESOA 13), 2013, Berlin.
 
-\bibitem{BPEL4Chor}
-G.~Decker; O.~Kopp; F.~Leymann; M.~Weske, \emph{BPEL4Chor: Extending BPEL for Modeling Choreographies}, Web Services, 2007. ICWS 2007. IEEE International Conference on , vol., no., pp.296,303, 9-13 July 2007.
+% \bibitem{BPEL4Chor}
+% G.~Decker; O.~Kopp; F.~Leymann; M.~Weske, \emph{BPEL4Chor: Extending BPEL for Modeling Choreographies}, Web Services, 2007. ICWS 2007. IEEE International Conference on , vol., no., pp.296,303, 9-13 July 2007.
 
 %\bibitem{BPEL}
 %OASIS: \emph{Web Services Business Process Execution Language} Version 2.0 (April 2007).
@@ -455,25 +462,30 @@ G.~Decker; O.~Kopp; F.~Leymann; M.~Weske, \emph{BPEL4Chor: Extending BPEL for Mo
 % A.~Marcus, E.~Wu, D.~Karger, S.~Madden, and R.~Miller. \emph{Humanpowered sorts and joins}. Proc. VLDB Endow., 5(1):13–24, September 2011.
 
 \bibitem{AutonomicCloud}
-P.~Mayer, A.~Klarl, R.~Hennicker, M.~Puviani, F.~Tiezzi, R.~Pugliese, J.~Keznikl, and T.~Bures. \emph{The Autonomic Cloud: A Vision of Voluntary, Peer-2-Peer Cloud Computing}. In Proceedings of 3rd Workshop on Challenges for Achieving Self-Awareness in Autonomic Systems, pages 1–6, Philadelphia, USA, September 2013.
+P.~Mayer, A.~Klarl, R.~Hennicker, M.~Puviani, F.~Tiezzi, R.~Pugliese, J.~Keznikl, and T.~Bures. \emph{The Autonomic Cloud: A Vision of Voluntary, Peer-2-Peer Cloud Computing}. In Proc. 3rd Workshop on Challenges for Achieving Self-Awareness in Autonomic Systems, p. 1--6, Philadelphia, USA, 2013.
 
 \bibitem{Pastry}
-A.~I.~T.~Rowstron and P.~Druschel, \emph{Pastry: Scalable, decentralized object location, and routing for large-scale peer-to-peer systems}, in Proceedings of the IFIP/ACM International Conference on Distributed Systems Platforms Heidelberg, ser. Middleware ’01. London, UK, UK: Springer-Verlag, 2001, pp. 329–350.
+A.~I.~T.~Rowstron and P.~Druschel, \emph{Pastry: Scalable, decentralized object location, and routing for large-scale peer-to-peer systems}. Proc. IFIP/ACM Intl. Conf. on Dist. Sys. Platforms, 
+%Heidelberg, ser. Middleware ’01. 
+London, pp. 329--350, 2001.
 
 \bibitem{Scribe}
-M.~Castro, P.~Druschel, A.-M.~Kermarrec, and A.~I.~Rowstron, \emph{Scribe: A large-scale and decentralized application-level multicast infrastructure}, Selected Areas in Communications, IEEE Journal on, vol. 20, no. 8, pp. 1489–1499, 2002.
+M.~Castro, P.~Druschel, A.-M.~Kermarrec, and A.~I.~Rowstron, \emph{Scribe: A large-scale and decentralized application-level multicast infrastructure}, Selected Areas in Communications, IEEE Journal on, vol. 20, no. 8, pp. 1489--1499, 2002.
 
 \bibitem{Jabberwocky}
-S. Ahmad, A. Battle, Z. Malkani, and S. Kamvar. 2011. \emph{The jabberwocky programming environment for structured social computing}. In Proceedings of the 24th annual ACM symposium on User interface software and technology (UIST '11). ACM, New York, NY, USA, 53-64. DOI=10.1145/2047196.2047203 http://doi.acm.org/10.1145/2047196.2047203
+S. Ahmad, A. Battle, Z. Malkani, and S. Kamvar. 2011. \emph{The jabberwocky programming environment for structured social computing}. Proc. 24th ACM Symp. on User Interface Software and Tech. (UIST '11). ACM, New York, 53--64. %DOI=10.1145/2047196.2047203 
+
 
 \bibitem{Turkit}
-G.~Little, L.~B.~Chilton, M.~Goldman, and R.~C.~Miller. \emph{Turkit: tools for iterative tasks on mechanical turk}. In Proceedings of the ACM SIGKDD workshop on human computation, pages 29–30. ACM, 2009.
+G.~Little, L.~B.~Chilton, M.~Goldman, and R.~C.~Miller. \emph{Turkit: tools for iterative tasks on mechanical turk}. In Proceedings of the ACM SIGKDD workshop on human computation, p. 29--30. ACM, 2009.
 
 \bibitem{truongijcis}
- H.-L. Truong, S.~Dustdar, and K.~Bhattacharya. \emph{Conceptualizing and Programming Hybrid Services in the Could}. Int. J. Coop. Info. Syst. 22, 1341003 (2013) DOI: 10.1142/S0218843013410037
+ H.-L. Truong, S.~Dustdar, and K.~Bhattacharya. \emph{Conceptualizing and Programming Hybrid Services in the Could}. Int. J. Coop. Info. Syst. 22, (2013) 
+ %DOI: 10.1142/S0218843013410037
 
 \bibitem{KobiGal}
-Y.~Gal, S.~Kraus, M.~Gelfand, H.~Khashan, and E.~Salmon. \emph{An Adaptive Agent for Negotiating with People in Different Cultures}. In  ACM Trans. Intell. Syst. Technol. vol. 3, no. 1, ACM, 2011. DOI: 10.1145/2036264.2036272
+Y.~Gal, S.~Kraus, M.~Gelfand, H.~Khashan, and E.~Salmon. \emph{An Adaptive Agent for Negotiating with People in Different Cultures}. In  ACM Trans. Intell. Syst. Technol. vol. 3, no. 1, ACM, 2011. 
+%DOI: 10.1145/2036264.2036272
 
 \end{thebibliography}
 
