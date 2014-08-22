@@ -106,67 +106,68 @@ The middleware is able to handle numerous, intermittently available, human and s
   %
   CASs come in a variety of forms. \textit{Hybrid and Diversity-Aware CAS} (\textit{HDA-CAS}s) \cite{fausto} additionally add the \emph{heterogeneity} to the founding principles. This means that they inherently support communication and collaboration among different types of units, such as software, people and sensors. 
   %
-  In this paper, we focus on one particular HDA-CAS representative---the \textit{SmartSociety Platform} \cite{SmartSocBook}; and present the design of the platform's \emph{virtualization and communication middleware}---\mdl{}, providing the communication primitives to supporting the platform's heterogeneity, collectivity and adaptiveness requirements. However, the middleware's design is generally applicable to a wide number of HDA-CAS platforms.
   
   
 
   \textbf{Motivation. }
   %
   Let us consider a smart-city \emph{maintenance provider} (\emph{MP}) -- a company running a monitoring center covering thousands of sensors and equipment systems geographically dispersed in numerous smart buildings (e.g., Galaxy\footnote{Pacific Contorls Galaxy. \url{http://www.pacific-galaxy.com/}}). The MP provides the centralized service of both \emph{predictive} and \emph{corrective} maintenance to its customers (building owners/tenants). This means that MP control centers actively monitor events originating from various sensors, perform Complex Event Processing on these data flows, and if a potential or actual malfunction is detected dispatch collectives of experts to analyze the situation in detail, and, if necessary, perform the physical maintenance work on the ground. The (human) experts are contracted to work on-demand with the MP, subject to their availability.
-  
+  %
   Since each equipment manufacturer defines different issue analysis and reparation procedures, when equipment from different manufacturers is interconnected in a smart building, detecting a cause of an anomaly event sequence cannot easily be done by following prescribed procedures. The complexity grows further when considered at the scale of a smart city, with thousands of building, each with a unique equipment mix, age, environment, and agreed service-level. Therefore, such a scenario does not lend itself well to a conventional workflow type of orchestration. Rather, collectives of human experts perform loosely-controlled collaboration patterns (Section~\ref{sec:intro:context}) in order to detect and repair the problem in the most efficient way, considering the particular context, and making use of supporting software tools when needed (e.g., for data analysis, communication). 
 
-  
-
   \textbf{Contribution. }
-   %
-   In the described motivational scenario the MP needs a platform to communicate with and deploy ad-hoc assembled, dynamic teams of human and machine service units in order to execute, often unforeseeable, complex collaboraton patterns. The SmartSociety platform was designed to cater to these requirements, while \mdl{}, one of its core components, is the module responsible for managing all communicational aspects of it. \mdl{} fulfills the following requirements characteristic of most service buses:
+  %
+  In the described motivational scenario the MP needs a platform to communicate with, deploy and orchestrate ad-hoc assembled, dynamic teams of human and machine service units in order to execute, often unpredictable, complex collaboraton patterns. An HDA-CAS, such as \textit{SmartSociety} \cite{SmartSocBook}, can fully suport these  requirements. In this paper, we present the design of one of the SmartSociety's core components: the \emph{virtualization and communication middleware} -- \mdl{}, providing the communication and virtualization primitives to support heterogeneity, collectivity and adaptiveness. Although developed for SmartSociety, \mdl{} is an independent component usable with to a wide number of HDA-CAS platforms.
+%
+%In this paper, we focus on one particular HDA-CAS representative -- the \textit{SmartSociety} \cite{SmartSocBook}; and present the design of the platform's \emph{virtualization and communication middleware} -- \mdl{}, providing the communication primitives to supporting the platform's heterogeneity, collectivity and adaptiveness requirements. However, the middleware's design is generally applicable to a wide number of HDA-CAS platforms.
+%
+ %  The SmartSociety platform was designed to cater to these requirements, while \mdl{}, one of its core components, is the module responsible for managing all communicational aspects of it. 
+%
+   \mdl{} fulfills the following requirements characteristic of most service buses:
      \begin{inparaenum}[a) \itshape]
         %
-        \item \textit{Heterogeneity} -- supporting various types of communications channels (protocols) between the platform and service units as well as among service units/collectives, transparently to the platform user.
+        \item \textit{Heterogeneity} -- supporting various types of communications channels (protocols) between the platform and service units as well as among service units/collectives, transparently to the HDA-CAS platform user.
         %
         \item \textit{Communication} -- providing primitives for: message transformation, routing, delivery with configurable options (e.g., retries, expiry, delayed, acknowledged).
         %
         \item \textit{Persistence} -- message persistence and querying.
         %
-        %\item \textit{Interpretation} -- message interpretation service for peers.
+        \item \textit{Security} -- Handling authentication and encryption, as well as preventing message flooding.
         %
         \item \textit{Scalability} -- ability to handle large number of intermittently available service units.
       \end{inparaenum}
 
-	However, in addition to these requirements, the distinguishing novelty of \mdl{} is the native support for virtualizing \text{collectives}: \mdl{} hides the complexity of communication with a dynamic collective as a whole and passing of instructions from the CAS programming model to it, making it a first-class entity; communication with a human or a machine element is transparent to the programmer; humans can participate in diffrent collectives concurrently, acting as different service units with diffrent delivery and privacy policies. These properties make \mdl{} suitable for  
+	In addition to these features, the distinguishing novelty of \mdl{} is the native support for virtualizing \text{collectives}: 
+	\begin{inparaenum}[i) \itshape]
+	\item
+	\mdl{} hides the complexity of communication with a dynamic collective as a whole and passing of instructions from the HDA-CAS execution engine to it, making it a first-class, programmable entity; 
+	\item 
+	Communication with the collective members is transparent to the HDA-CAS, regardless of whether they are human or a machine-based, with \mdl{} interpreting the messages for the human-based service units; 
+	\item 
+	A single human, sensor or software service endpoint can participate in diffrent collectives concurrently, acting as a different service unit with different SLA, delivery and privacy policies. 
+	\end{inparaenum}
+	These novel properties make \mdl{} especially suitable for supporting scenarios such as predictive maintenance.
 
-
-
-A middleware acting as a smart society service bus will automatically route instructions to
-the right virtualized computing elements. The routing algorithms will utilize several description information and
-non-functional properties associated with humans/machines and matching techniques developed in other WPs.
-Furthermore, the middleware also performs initiating and provisioning virtualized services on-demand as well as
-to integrate with existing systems providing and hosting machines (e.g., cloud systems) and humans (e.g., social
-networks). 
-
-The result of this task would be techniques and middleware that allow other components to request,
-communicate and invoke individual human-based and machine-based computing elements in a similar way
 
 \figtop[.75]{smartsoc-highlevel}{Operational context for the \mdl{} middleware. Middleware components are marked in blue.}
 
 
 \textbf{Paper Organization. }
   %
-  In the following section we present the context and usage scenario of the SmartSociety platform and formulate the design requirements for the \mdl{} middleware. In Section~\ref{sec:middleware} we present \mdl's architecture and functionalities aiming to fulfill the presented requirements. In Section~\ref{sec:impl} we validate the presented design by describing a prototype implementation and showcase its functioning on a realistic use-case. Section~\ref{sec:relwork} presents the related work. Section~\ref{sec:conclusion} concludes the paper.
+  In the following section we present the operationl context of the \mdl{} middleware. In Section~\ref{sec:middleware} we present \mdl's architecture and design choices. In Section~\ref{sec:impl} we  describe the implementation and showcase a possible use in a realistic use-case. Section~\ref{sec:relwork} presents the related work. Section~\ref{sec:conclusion} concludes the paper.
 
 
   \section{Operational Context}
     \label{sec:intro:context}
 
-      Figure~\ref{fig:smartsoc-highlevel} shows the high-level architecture of the SmartSociety platform and presents the \mdl's operational context. SmartSociety platform supports `programming' and execution of hybrid human-computer `computations'. These computations consist of different general-purpose tasks being submitted to the platform for execution. More precisely, the platform \emph{users} submit complex tasks to a \emph{SmartSociety application} running on the platform. The application performs the task by assembling and engaging \textbf{collectives} of \textbf{service units} to execute the (sub-)tasks collaboratively.
+      Figure~\ref{fig:smartsoc-highlevel} shows the high-level architecture of the SmartSociety platform and presents the \mdl's operational context. SmartSociety platform supports `programming' and execution of hybrid human-computer `computations'. These computations consist of different general-purpose tasks being submitted to the platform for execution. More precisely, the platform \emph{users} (e.g., a smart-city maintenance provider) submit complex tasks to a \emph{SmartSociety application} running on the platform. The application performs the task by assembling and engaging \textbf{collectives} of \textbf{service units} to execute the (sub-)tasks collaboratively.
 
-      The service unit (SU) is an entity provisioned and utilized through service models (e.g., on-demand and pay-per-use usage) \cite{truongijcis}. An SU consists of:
+      The service unit (SU) is an entity provisioned and utilized through service models (e.g., on-demand and pay-per-use use), as described in \cite{truongijcis}. An SU consists of:
         \begin{inparaenum}[\itshape i)]
           %
-          \item \textbf{Peer} --- a human, a machine, or a thing (e.g., a sensor) performing the computation or executing a task;
+          \item \textit{Peer} -- a human, a machine, or a thing (e.g., a sensor) performing the computation or executing a task;
           %
-          \item \textbf{Context} --- a set of parameters describing the execution context of the particular HDA-CAS application in which the SU is participating. 
+          \item \textit{Context} -- a set of parameters describing the execution context of the particular HDA-CAS application in which the SU is participating. 
         \end{inparaenum}
       %
       The context parameters can include: execution ID, QoS requirements, performance metrics, associated incentives. Additionally, the context includes a \emph{Communication Adapter}, a component belonging to the \mdl{} middleware, providing a context/application-dependent communication and virtualization channel for communicating with the SU, i.e., the peer within it (Figure~\ref{fig:smartsoc-highlevel}).
@@ -202,7 +203,7 @@ communicate and invoke individual human-based and machine-based computing elemen
 
   Figure~\ref{fig:smartcom-architecture} shows the conceptual architecture of the \mdl{} middleware. The \emph{HDA-CAS Platform} components (e.g., executing application modules) pass the messages intended for collectives to the \emph{Communication Engine} through a public API. The task of the Communication Engine is to effectively virtualize the notions of `collective' and `service unit (SU)' for the HDA-CAS platform. This means that the communication with different service units and collectives has to be handled transparently to the HDA-CAS platform, independent of unit's actual type and availability. 
   %Communication engine's principal components are the Messaging and Routing Manager and the Adapter Manager.
-  In the following sections, for brevity, when referring to the communicational aspect of SU's functionality we will use the short term ``peer'' denoting the computing element within the SU that is the sender or receiver of information/data; and the term ``adapter'' denoting the middleware component in charge of handling the communication.
+  In the following sections, for brevity, when referring to the communicational aspect of SU's functionality we will use the short term ``peer'' denoting the computing human/machine element within the SU that is the sender or receiver of information/data; and the term ``adapter'' denoting the middleware component in charge of handling the communication.
 
   \textbf{Messaging and Routing. }
     %
@@ -219,8 +220,7 @@ communicate and invoke individual human-based and machine-based computing elemen
       %
       \item The \emph{Feedback Handler} waits for feedback messages received through feedback adapters and  passes them to the Message Handler. Afterwards they will be handled like normal messages again, and re-routed where needed, e.g., back to the HDA-CAS.
     \end{inparaenum}
-
-    
+	%    
     A \emph{route} may include different communication channels as delivery start-/endpoints. Figure~\ref{fig:routes} shows the conceptual overview of \mdl's routing. For each message the route will be determined by the Routing Rule Engine using the pipes-and-filters pattern, determining the route based on the  message properties: receiver ID, message type and message subtype, with decreasing priority. 
 	  % 
     Note that there may be multiple routes per message (e.g., a single peer can be contacted using a mobile application and/or SMS, or access the system via a mobile app and web browser concurrently).
@@ -231,21 +231,21 @@ communicate and invoke individual human-based and machine-based computing elemen
   	%
     In order to use a specific communication channel, an associated \emph{adapter} needs to be instantiated. The communication between peers and the adapters is unidirectional --- \emph{peer adapters} are used to send messages to the peers; \emph{feedback adapters} are used to receive messages from peers. 
     %
-    \mdl{} originally provides some common peer/feedback adapters  (e.g., SMTP/POP, Dropbox, Twitter). In addition, being developed in the context of a research project, it also provides adapters for dedicated SmartSociety mobile/web peer apps. When an HDA-CAS requires the \mdl{} to handle a new communication channel, it needs to provide an appropriate adapter implementation. Afterwards, \mdl{} will instantiate the new adapter when needed.
-
+    \mdl{} originally provides some common peer/feedback adapters  (e.g., SMTP/POP, Dropbox, Twitter). In addition, being developed in the context of a research project, it also provides adapters for dedicated SmartSociety Android/Web peer apps. 
+    %When an HDA-CAS requires the \mdl{} to handle a new communication channel, it needs to provide an appropriate adapter implementation. Afterwards, \mdl{} will instantiate the new adapter when needed.
     The role of adapters should be considered from the following two perspectives:
-    \begin{inparaenum}[\itshape i)]
+    \begin{inparaenum}[\itshape 1)]
     \item functional; and 
     \item technical.
     \end{inparaenum}
-    %
+    
     Functionally, the adapters allow for:
     \begin{inparaenum}[\itshape a)]
-    \item Hybridity --- by enabling different communication channels to and from peers;
-    \item Scalability --- by enabling \mdl{} to cater the dynamically changing number of peers;
-    \item Extensibility --- new types of communication and collaboration channels can easily be added at a later stage transparently to the rest of the HDA-CAS platform.
-    \item Usability --- human peers are not forced to use dedicated applications for collaboration, but rather freely communicate and (self-)organize among themselves by relying on familiar third-party tools.
-    \item Load Reduction and Resilience --- by requiring that all the feedback goes exclusively and unidirectionally through external tools first, only to be channelled/filtered later through a dedicated feedback adapter, the \mdl{} is effectively shielded from unwanted traffic load, delegating the initial traffic impact to the infrastructure of the external tools. At the same time, failure of a single adapter will not affect the overall functioning of the middleware.
+    \item Hybridity -- by enabling different communication channels to and from peers;
+    \item Scalability -- by enabling \mdl{} to cater to the dynamically changing number of peers;
+    \item Extensibility -- new types of communication and collaboration channels can easily be added at a later stage transparently to the rest of the HDA-CAS platform.
+    \item Usability -- human peers are not forced to use dedicated applications for collaboration, but rather freely communicate and (self-)organize among themselves by relying on familiar third-party tools.
+    \item Load Reduction and Resilience -- by requiring that all the feedback goes exclusively and unidirectionally through external tools first, only to be channelled/filtered later through a dedicated feedback adapter, the \mdl{} is effectively shielded from unwanted traffic load, delegating the initial traffic impact to the infrastructure of the external tools. At the same time, failure of a single adapter will not affect the overall functioning of the middleware.
     \end{inparaenum}
 
     %For example, the peer might upload a 5MB photo to his Dropbox folder, while \mdl{} will just notify the send one simple msg through the middleware}).
@@ -257,16 +257,16 @@ communicate and invoke individual human-based and machine-based computing elemen
     The \emph{Adapter Manager} is the component responsible for managing the adapter lifecycle (i.e., creation, execution and deletion of instances), elastically adjusting the number of active instances from a pool of available adapters. This allows scaling the number of active connections up and down as needed. This is especially important when dealing with human peers, due to their inherent periodicity, frequent instability and unavailability, as well as for managing a large number of connected devices, such as sensors. The Adapter Manager consists of following subcomponents: 
     %Adapter Handler, Adapter Execution Engine and Address Resolver.
     %
-    \begin{itemize}
+    \begin{itemize}[$\bullet$]
       \item \emph{Adapter Handler}: managing adapter instance lifecycle. It handles the following adapter types:  
             \begin{inparaenum}[\itshape i)]
-              \item Stateful peer adapters -- peer adapters that maintain conversation state (e.g., login information). For each peer a new instance of the adapter will be created and handled by the Adapter Manager; 
+              \item Stateful peer adapters -- peer adapters that maintain conversation state (e.g., login information). For each peer a new instance of the adapter will be created; 
               %
               \item Stateless peer adapters -- peer adapters that maintain no state. An instance of an adapter can send messages to multiple peers; 
               %
               \item Feedback pull adapters -- adapters that actively poll software peers for feedback. They are created on demand by applications running on the HDA-CAS platform and will check regularly for feedback on a given communication channel (e.g., check if a file is present on an FTP server);
               %
-              \item Feedback push adapters -- adapters that wait for feedback from human/machine peers. 
+              \item Feedback push adapters -- adapters that wait for feedback from peers. 
             \end{inparaenum}
       \item \emph{Adapter Execution Engine}: executing the active adapters.
       \item \emph{Address Resolver}: mapping adapter instances with peers' external identifiers (e.g., Skype/Twitter username) in order to initiate the communication.
