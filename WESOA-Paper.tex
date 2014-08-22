@@ -148,7 +148,7 @@ The middleware is able to handle numerous, intermittently available, human and s
 	\item 
 	A single human, sensor or software service endpoint can participate in diffrent collectives concurrently, acting as a different service unit with different SLA, delivery and privacy policies. 
 	\end{inparaenum}
-	These novel properties make \mdl{} especially suitable for supporting scenarios such as predictive maintenance.
+	These novel properties make \mdl{} especially suitable for supporting scenarios such as predictive maintenance. To the best of our knowledge, no other platforms or middleware systems offer the collective virtualization in a similar manner. 
 
 
 \figtop[.85]{smartsoc-highlevel}{Operational context for the \mdl{} middleware. Middleware components are marked in blue.}
@@ -362,9 +362,10 @@ The middleware is able to handle numerous, intermittently available, human and s
 \section{Conclusions and Future Work}
 \label{sec:conclusion}
 
-  In this paper we presented \mdl{} --- a middleware for SmartSociety platform, a typical HDA-CAS. \mdl{} aims to tackle hybridity in a variety of aspects, including different kinds of supported computations (human- vs. machine-based service units), different channels of communication, and loose-coupling to promote use of familiar third-party services. This heterogeneity is of high importance in order to create a platform, which is able to scale to a potentially high number of service units organized in multiple dynamic collectives. \mdl{} allows addressing collectives of service units transparently to the HDA-CAS, relieving the HDA-CAS programmer the duty to keep track of current members of a collective, allowing the collective to scale up and down when needed seamlessly. The described design was chosen to fulfill the outlined requirements, and was validated through a prototype implementation. 
-
+  In this paper we presented \mdl{} --- a middleware for SmartSociety platform, a typical HDA-CAS. \mdl{} aims to tackle hybridity in a variety of aspects, including different kinds of supported computations (human- vs. machine-based service units), different channels of communication, and loose-coupling to promote use of familiar third-party services. This is of high importance in order to create a platform which is able to scale to a potentially high number of service units organized in multiple dynamic collectives. \mdl{} allows addressing collectives of service units transparently to the HDA-CAS, relieving the HDA-CAS programmer the duty to keep track of current members of a collective, allowing the collective to scale up and down when needed seamlessly. The described design was validated through a prototype implementation provided as open-source.
+  %
   The focus of our future research will be on modelling the primitives for integrated monitoring and execution of elasticity actions, such as imposing of optimal topologies, dynamical adjustment of collective members, and support for incentive application. Currently, these actions have to be fully specified on the HDA-CAS (SmartSociety) application level, presenting an unnecessary burden for the developers.
+  \\
 
 
 
