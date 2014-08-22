@@ -22,7 +22,7 @@
 \usepackage{placeins} %for fixing floats
 \usepackage{gensymb}  %for degree symbol
 
-\hyphenation{crowd-sour-cing middle-ware}
+\hyphenation{crowd-sour-cing middle-ware uni-dir-ection-al inter-mittently}
 
 %\newcommand{\sms}{\textsc{SmartSoc}}
 \newcommand{\mdl}{\textsc{SmartCom}}
@@ -67,9 +67,8 @@
 \titlerunning{Virtualizing Communication for HDA-CAS}
 \author{Philipp Zeppezauer \and Ognjen Scekic \and Hong-Linh Truong \and Schahram Dustdar}
 
-\institute{Distributed Systems Group, Vienna University of Technology, Austria
-\email{\{zeppezauer,oscekic,truong,dustdar\}@dsg.tuwien.ac.at}
-\texttt{http://dsg.tuwien.ac.at}}
+\institute{Distributed Systems Group, Vienna University of Technology, Austria\\
+\email{Email: \{zeppezauer,oscekic,truong,dustdar\}@dsg.tuwien.ac.at}}
 
 
 % \author{\IEEEauthorblockN{
@@ -96,13 +95,15 @@ heterogeneous human-based and machine-based computing (service) units.
 %agents (humans and machines). 
 These units %are required
 %to 
-collaborate in ad-hoc formed, dynamically-adaptive collectives.  Whenever possible, the collectives are allowed to self-orchestrate. The flexibility of these collectives makes them suitable for processing elaborate tasks, but at the same time, building a system to manage such collectives is challenging. In this paper, we address the fundamental communication challenges for HDA-CAS. 
+collaborate in ad-hoc formed, dynamically-adaptive collectives.  
+%Whenever possible, the collectives are allowed to self-orchestrate. 
+The flexibility of these collectives makes them suitable for processing elaborate tasks, but at the same time, building a system to support diverse types of communication types in such collectives is challenging. In this paper, we address the fundamental communication challenges for HDA-CAS. 
 %represents a challenge. 
 %In this paper, 
 We present the design of a middleware for virtualizing communication  within and among collectives.
 %virtualization in a communication and
 %virtualization middleware for one such system, the SmartSociety platform.
-The middleware is able to handle numerous, intermittently-available, human and software-based service units, and manage the notion of collectivity transparently to the programmer. A prototype implementation for validation purposed is also provided.
+The middleware is able to handle numerous, intermittently available, human and software-based service units, and manage the notion of collectivity transparently to the programmer. A prototype implementation for validation purposed is also provided.
 \end{abstract}
 
 \section{Introduction}
@@ -112,12 +113,12 @@ The middleware is able to handle numerous, intermittently-available, human and s
   %
   CASs come in a variety of forms. \textbf{Hybrid and Diversity-Aware CAS} (\textbf{HDA-CAS}s) \cite{fausto} additionally add the \emph{heterogeneity} to the founding principles. This means that they inherently support communication and collaboration among different types of computing elements, such as software, people and sensors. 
   %
-  In this paper, we focus on one particular HDA-CAS representative---the \textbf{SmartSociety Platform} \cite{SmartSocBook}; and present the design of the platform's \emph{virtualization and communication middleware}---\textbf{\mdl{}}, providing the communication primitives to supporting the platform's heterogeneity, collectivity and adaptiveness requirements. However, the middleware's design is generally applicable to a wide number of HDA-CAS platforms.
+  In this paper, we focus on one particular HDA-CAS representative---the \textbf{SmartSociety Platform} \cite{SmartSocBook}; and present the design of the platform's \emph{virtualization and communication middleware}---\mdl{}, providing the communication primitives to supporting the platform's heterogeneity, collectivity and adaptiveness requirements. However, the middleware's design is generally applicable to a wide number of HDA-CAS platforms.
 
   
   In the following section we present the context and usage scenario of the SmartSociety platform and formulate the design requirements for the \mdl{} middleware. In Section~\ref{sec:middleware} we present \mdl's architecture and functionalities aiming to fulfill the presented requirements. In Section~\ref{sec:impl} we validate the presented design by describing a prototype implementation and showcase its functioning on a realistic use-case. Section~\ref{sec:relwork} presents the related work. Section~\ref{sec:conclusion} concludes the paper.
 
-  \figcol[1.0]{smartsoc-highlevel}{Operational context for the \mdl{} middleware. Middleware components are marked in blue.}
+  \figcol[.75]{smartsoc-highlevel}{Operational context for the \mdl{} middleware. Middleware components are marked in blue.}
 
   \section{Motivation \& Requirements}
 
@@ -146,18 +147,18 @@ The middleware is able to handle numerous, intermittently-available, human and s
       %At the same time, the the collaboration patterns help the peers to initialize and better self-control the collaboration. A SmartSociety application developer can indicate which patterns to use.
       %, while leaving the on-the-site organization to the peers themselves.
       %
-      A collaborative pattern consists of the following elements:
+      A collaboration pattern consists of the following elements:
 
           \begin{itemize}%[\setlabelwidth{-}]
           %\begin{LaTeXdescription}
-            \item Relationship topology -- specifying different topologies (e.g., independent, tree, ring, sink, random) and relation types formalizing relationships among service units in a collective. The meaning of the relations is application specific, and can be used to express communication flow, data flow or command flow. 
+            \item Relationship topology -- specifying different topologies (e.g., independent, tree, ring, sink, random) and relation types formalizing relationships among service units in a collective. The meaning of the relations is application specific, and can be used to express communication/data/command flow. 
             
             \item Collaboration environment -- specifying access to familiar external tools that the service units can use to collaborate among themselves (e.g., Google Docs, Dropbox). When a collective is formed, service units are provided with instructions and appropriate access credentials for the previously set up collaboration environment. 
             
-            \item Communication channels -- analogously to the collaboration environment, the pattern should specify access to familiar external tools that the service units can use to communicate among themselves and with SSP. 
-            %Specification of channels in principle depends on the imposed topology. SSP cannot provide communication functionality between peers, nor between peers and the SSP. Therefore, all the communication should be performed using existing tools (e.g., mail, twitter, Skype). An adapter may be needed when the external tools is used to communicate with SSP. 
+            \item Communication channels -- analogously to the collaboration environment, the pattern should specify access to familiar external tools that the service units can use to communicate among themselves and with SmartSociety Platform. 
+            %Specification of channels in principle depends on the imposed topology. SSP cannot provide communication functionality between peers, nor between peers and the SSP. Therefore, all the communication should be performed using existing tools (e.g., mail, twitter, Skype). An adapter may be needed when the external tools is used to communicate with SmartSociety Platform. 
             
-            \item Elasticity policies -- definitions of metrics to be monitored and algorithms for collective composition and adaptation to keep metric values within required limits.
+            \item Elasticity policies -- definitions of metrics to be monitored and algorithms for collective composition and adaptation.
 
             \item Security and privacy policies -- policies to restrict communication to specific (sub-)collective or to predefined communication channels.
             
@@ -215,7 +216,7 @@ The middleware is able to handle numerous, intermittently-available, human and s
       
 %\hl{go through paper and put HDA-CAS instead of SmartSociety where appropriate}
 
-\figfull[0.85]{smartcom-architecture}{Simplified architecture of the \mdl{} middleware.}
+\figfull[1.]{smartcom-architecture}{Simplified architecture of the \mdl{} middleware.}
 
 \section{Middleware Design and Architecture}
 \label{sec:middleware}
@@ -249,12 +250,12 @@ The middleware is able to handle numerous, intermittently-available, human and s
 	  % 
     Note that there may be multiple routes per message (e.g., a single peer can be contacted using a mobile application and/or SMS, or access the system via a mobile app and web browser concurrently).
 
-    \figcol[1.0]{routes}{Messages are routed to Peer Adapters ($P_a$) which forward the messages to the corresponding Peers ($P_1$ to $P_5$). Feedback is sent back by human peers, software peers (e.g., Dropbox) and sensors using Feedback Adapters ($F_a$). The HDA-CAS Platform can also send and receive messages.}
+    \figcol[.75]{routes}{Messages are routed to Peer Adapters ($P_a$) which forward the messages to the corresponding Peers ($P_1$ to $P_5$). Feedback is sent back by human peers, software peers (e.g., Dropbox) and sensors using Feedback Adapters ($F_a$). The HDA-CAS Platform can also send and receive messages.}
 
   \subsection{Adapters}
   \label{sec:adapters}
 
-    In order to use a specific communication channel, an associated \emph{adapter} needs to be instantiated. The communication between peers and the adapters is unidirectional--- \emph{peer adapters} are used to send messages to the peers; \emph{feedback adapters} are used to receive messages from peers. 
+    In order to use a specific communication channel, an associated \emph{adapter} needs to be instantiated. The communication between peers and the adapters is unidirectional --- \emph{peer adapters} are used to send messages to the peers; \emph{feedback adapters} are used to receive messages from peers. 
     %
     \mdl{} originally provides some common peer/feedback adapters  (e.g., SMTP/POP, Dropbox, Twitter). In addition, being developed in the context of a research project, it also provides adapters for dedicated SmartSociety mobile/web peer apps. When an HDA-CAS requires the \mdl{} to handle a new communication channel, it needs to provide an appropriate adapter implementation. Afterwards, \mdl{} will instantiate the new adapter when needed.
 
