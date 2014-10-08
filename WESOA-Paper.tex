@@ -88,7 +88,7 @@ Hybrid and Diversity-Aware Collective Adaptive Systems (HDA-CAS) form a broad cl
 
   \textit{Collective Adaptive System} (\textit{CAS}) \cite{FoCASBook} is an umbrella-term denoting distributed systems comprised of multiple autonomous computing/service units with different individual properties, but with the fundamental property of collectiveness. \emph{Collectiveness} implies that the individual units need to communicate and collaborate in order to reach common decisions, or perform tasks jointly. \emph{Adaptiveness} is another basic property of CASs, implying open systems where  units may join and leave, and dynamically alter collective compositions or task execution goals. 
   %
-  CASs come in a variety of forms. \textit{Hybrid and Diversity-Aware CAS} (\textit{HDA-CAS}s)~\cite{fausto} additionally add the \emph{heterogeneity} to the founding principles. This means that they inherently support communication and collaboration among different types of units, such as software, people and sensors. 
+  CASs come in a variety of forms. \textit{Hybrid and Diversity-Aware CASs} (\textit{HDA-CAS}s)~\cite{fausto} additionally add the \emph{heterogeneity} to the founding principles. This means that they inherently support communication and collaboration among different types of units, such as software, people and sensors. 
 
   \textbf{Motivation. }
   %
@@ -112,7 +112,7 @@ Hybrid and Diversity-Aware Collective Adaptive Systems (HDA-CAS) form a broad cl
 	In addition to these features, the distinguishing novelty of \mdl{} is its native support for virtualizing \text{collectives}: 
 	\begin{inparaenum}[i) \itshape]
 		\item \mdl{} hides the complexity of communication with a dynamic collective as a whole and passing of instructions from the HDA-CAS execution engine to it, making it a first-class, programmable entity; 
-		\item  Communication with the collective members is transparent to the HDA-CAS, regardless of whether they are human or a machine-based, with \mdl{} interpreting the messages for the human-based service units; 
+		\item  Communication with the collective members is transparent to the HDA-CAS, regardless of whether they are human or machine-based, with \mdl{} interpreting the messages for the human-based service units; 
 		\item  A single human, sensor or software service endpoint can participate in different collectives concurrently, acting as a different service unit with different SLA, delivery and privacy policies. 
 	\end{inparaenum}
 	These novel properties make \mdl{} especially suitable for supporting scenarios such as predictive maintenance. To the best of our knowledge, no other platforms or middleware systems offer the collective virtualization in a similar manner. 
@@ -137,8 +137,7 @@ Hybrid and Diversity-Aware Collective Adaptive Systems (HDA-CAS) form a broad cl
       %
       The context parameters can include: execution ID, QoS requirements, performance metrics, associated incentives. 
 	  %Additionally, the context includes a \emph{Communication Adapter}, a component belonging to the \mdl{} middleware, providing a context/application-dependent communication and virtualization channel for communicating with the SU, 
-	  To describe the communication with a SU, the context also contains a \emph{Communication Context}. The communication context represents the context of the communication with a SU, i.e., it defines context-dependent communication and virtualization channels (e.g., using email, SMS),
-	  i.e., the peer within it (Figure~\ref{fig:smartsoc-highlevel}).
+	  To describe the communication with a SU, the context also contains a \emph{Communication Context}. The communication context represents the context of the communication with a SU, i.e., it defines context-dependent communication and virtualization channels (e.g., using email, SMS).
       %
       The SU can use different communication channels to interact with \mdl{}, e.g., a human-based SU can communicate with the platform via email and Twitter interchangeably, receive task descriptions and track progress through a web application, and communicate with other SUs within the collective through a dedicated mobile app. Human-based SUs can make use of software-based SUs in the collective, serving as collaborative and utility tools. For example, a software service like Doodle can be used to agree upon participation times, Dropbox as a common repository for performed tasks, or Splunk for data analytics.
 
@@ -241,7 +240,7 @@ Hybrid and Diversity-Aware Collective Adaptive Systems (HDA-CAS) form a broad cl
 	%
     Feedback messages from peers (e.g., subtask results) or external tools (e.g., Dropbox file added, email received on a mailing list) are consumed by the adapters either by a push notification or by pulling in regular intervals (more details in Section~\ref{sec:impl}). 
     %
-    Due to space constraints, a detailed description of the described architectural components and their implementation, as well as the full API specification is provided in the supplement materials\footnote{\url{https://github.com/tuwiendsg/SmartCom/wiki}}.\addtocounter{footnote}{-1}
+    Due to space constraints, a detailed description of the described architectural components and their implementation, as well as the full API specification is provided in the supplement materials\footnote{\url{https://github.com/tuwiendsg/SmartCom/wiki}}.
 
   \textbf{Other Functionalities.}
     %
@@ -271,8 +270,8 @@ Hybrid and Diversity-Aware Collective Adaptive Systems (HDA-CAS) form a broad cl
 \section{Implementation \& Illustrative Example}
 \label{sec:impl}
 
-	\mdl{} prototype was implemented in the Java programming language and can be used directly by HDA-CAS platforms running on the Java Virtual Machine. Additionally, other platforms can interact with \mdl{} using the set of provided APIs\footnotemark. 
-	The prototype comes with some standard adapters (e.g., Email, Twitter, Dropbox) implemented that can be used to test, evaluate and operate the system.
+	\mdl{} prototype was implemented in the Java programming language and can be used directly by HDA-CAS platforms running on the Java Virtual Machine. Additionally, other platforms can interact with \mdl{} using the set of provided APIs. 
+	The prototype comes with some implemented standard adapters (e.g., Email, Twitter, Dropbox) that can be used to test, evaluate and operate the system.
 	Additional third-party adapters can be loaded as plug-ins and instantiated when needed.
 	\mdl{} uses MongoDB\footnote{\url{http://www.mongodb.org}} as a database system for its various subsystems. Depending on the usage of the middleware, either an in-memory or dedicated database instances of MongoDB can be used. To decouple the execution of the HDA-CAS platform and the communication we use Apache ActiveMQ\footnote{\url{http://activemq.apache.org}} as the message broker.
 	%
