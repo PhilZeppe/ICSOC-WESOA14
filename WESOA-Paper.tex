@@ -22,7 +22,7 @@
 \usepackage{placeins} %for fixing floats
 \usepackage{gensymb}  %for degree symbol
 
-%\usepackage{hyperref} % REMOVE THIS AGAIN AFTERWARDS
+
 
 \hyphenation{crowd-sour-cing middle-ware uni-dir-ection-al inter-mittently end-points}
 
@@ -308,7 +308,7 @@ Hybrid and Diversity-Aware Collective Adaptive Systems (HDA-CAS) form a broad cl
   Social Computing platforms like Jabberwocky~\cite{Jabberwocky} or TurKit~\cite{Turkit} utilize human capabilities to solve problems. However, they rely on existing crowdsourcing platforms and rely on their communication model that does not supporting collectives at all. 
   %Furthermore, support for inter-peer communication and collaboration is very restricted. 
 
-\vspace{-5pt}
+
 
 \section{Conclusions and Future Work}
 \label{sec:conclusion}
@@ -321,7 +321,7 @@ Hybrid and Diversity-Aware Collective Adaptive Systems (HDA-CAS) form a broad cl
 %\section*{Acknowledgment}
 This work is supported by the EU FP7 SmartSociety project under grant N\textsuperscript{\underline{o}} 600854.
 
-\vspace{-4pt}
+
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
@@ -399,19 +399,3 @@ Y.~Gal, S.~Kraus, M.~Gelfand, H.~Khashan, and E.~Salmon. \emph{An Adaptive Agent
 
 
 \end{document}
-
-%The following commented text is mine, so it can be freely used and altered
-
-% A client-written SmartSociety application defines, among other things, a set of messages that can be exchanged with peers and their semantics. The application consists of two types of modules. A server-side module, running on SSP, and a module running on the peer device (actually, depending on the actual operating system that the peer uses we may have multiple types of peer apps, but for the sake of explanation, let us assume that only one exists). 
-
-% As both modules belong to the same SS application, they have the common understanding of the message semantics which delimits what kind of interactions they can do. The messages they exchange can be used to propose working on a task, accept the work, quit, notify of changes, notify of incentives, send collaboration requests and messages to other collective members, etc. 
-
-% We mentioned that the SSP should also set up a collaborative environment for a collective. However, this does not assume that the environment should be part of the peer application. Instead, the peer will just receive through her app the addresses and access credentials for using the different collaborative tools communication channels, and communicating with other peers. Communication with other peers in the collective through the predefined messages is done through SSP. So, all the message exchange that the application designer considers important for the application should go through SSP middleware, but if the application designer wishes so, a free peer-to-peer communication can be allowed. 
-
-% For example, if the application promises paying out a referral bonus to a peer who brings in a quality collaborator in the collective, then this invitation to the collective must be done through SSP, in order that this action can be officially recorded and taken account of. On the other hand, free, unofficial communication of peers may be encouraged by automatically setting up an IRC chat room.
-% Or, peers can be asked to send all official messages relevant to the collaboration to an official mailing list, which is managed by the SSP, while the unofficial communication channels may not be specified.
-
-% Important thing here is to emphasize that no computation takes place within SSP or the peer module. Rather, the SSP only takes care of coordination and collaboration. Task descriptions, computation and utility tools and most communication channels lie outside of the SSP platform on user defined locations. SSP just coordinates and monitors the execution. 
-% For example, if for participating in a collective a number of peers were issued credentials to access a dropbox folder by the SSP application, then excluding a peer includes also revoking access rights to that folder. 
-
-%SmartSociety applications will be accessible via a variety of devices, online via the web and on mobile device
